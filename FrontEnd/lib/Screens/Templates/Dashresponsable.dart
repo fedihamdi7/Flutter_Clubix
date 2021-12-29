@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:home_rental/component/appBarActionItems.dart';
-
+import 'package:flutter/cupertino.dart';
 import 'package:home_rental/component/header.dart';
 
 import 'package:home_rental/component/infoCard.dart';
@@ -71,23 +71,24 @@ class _AccountpageState extends State<Dashresponsable> {
                             alignment: WrapAlignment.spaceBetween,
                             children: [
                             InfoCard(
-                                  icon: 'asset/images/credit-card.svg',
+                                  icon: 'asset/images/calendar.svg',
                                   label: 'Event',
                                     amount: '15'
                                  ),
                               InfoCard(
-                                  icon: 'assets/transfer.svg',
+                                  // icon: Icon(CupertinoIcons.person_alt_circle),
+                                  icon: '',
                                   label: 'Team members',
                                    amount: '3'
                                   ),
                               InfoCard(
                                   icon: 'assets/bank.svg',
                                   label: 'Post',
-                                  amount: '\$1500'),
+                                  amount: '1'),
                               InfoCard(
                                   icon: 'assets/invoice.svg',
-                                  label: 'Transafer to \nOther Bank',
-                                  amount: '\$1500'),
+                                  label: 'about us',
+                                  amount: '1'),
                             ],
                           ),
                         ),
@@ -105,33 +106,11 @@ class _AccountpageState extends State<Dashresponsable> {
                         
                        
                        
-                        if (!Responsive.isDesktop(context)) PaymentDetailList()
                       ],
                     ),
                   ),
                 )),
-            if (Responsive.isDesktop(context))
-              Expanded(
-                flex: 4,
-                child: SafeArea(
-                  child: Container(
-                    width: double.infinity,
-                    height: SizeConfig.screenHeight,
-                    decoration: BoxDecoration(color: AppColors.secondaryBg),
-                    child: SingleChildScrollView(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 30, horizontal: 30),
-                      child: Column(
-                        children: [
-                          AppBarActionItems(),
-                          PaymentDetailList(),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-          ],
+                    ],
         ),
       ),
     );

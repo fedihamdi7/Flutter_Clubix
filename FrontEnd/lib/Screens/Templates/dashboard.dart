@@ -100,32 +100,12 @@ class Dashboard extends StatelessWidget {
                         
                        
                        
-                        if (!Responsive.isDesktop(context)) PaymentDetailList()
+                      
                       ],
                     ),
                   ),
                 )),
-            if (Responsive.isDesktop(context))
-              Expanded(
-                flex: 4,
-                child: SafeArea(
-                  child: Container(
-                    width: double.infinity,
-                    height: SizeConfig.screenHeight,
-                    decoration: BoxDecoration(color: AppColors.secondaryBg),
-                    child: SingleChildScrollView(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 30, horizontal: 30),
-                      child: Column(
-                        children: [
-                          AppBarActionItems(),
-                          PaymentDetailList(),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+            
           ],
         ),
       ),
