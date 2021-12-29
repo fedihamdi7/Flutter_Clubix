@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 import 'package:flutter/cupertino.dart';
-import 'package:clubix/pages/home.dart';
+// import 'package:home_rental/home.dart';
+import 'package:home_rental/Screens/HomePage.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {
@@ -15,14 +16,11 @@ class _LoginState extends State<Login> {
       body: Container(
         width: double.infinity,
         decoration: BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                colors: [
-                         Color(0xff1d2434),
-                          Colors.blue, 
-                          CupertinoColors.activeBlue]
-                          )
-                          ),
+            gradient: LinearGradient(begin: Alignment.topLeft, colors: [
+          Color(0xff1d2434),
+          Colors.blue,
+          CupertinoColors.activeBlue
+        ])),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -104,9 +102,12 @@ class _LoginState extends State<Login> {
                               child: RaisedButton(
                                 onPressed: () {
                                   // Navigator.pushReplacementNamed(context, '/home');
-                                  Navigator.push(context,MaterialPageRoute(builder: (context) => Home()));
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => HomePage()));
                                 },
-                                color:CupertinoColors.activeBlue,
+                                color: CupertinoColors.activeBlue,
                                 child: Text(
                                   "Login",
                                   style: TextStyle(color: Colors.white),
@@ -135,7 +136,7 @@ input(text) {
   return Container(
     padding: EdgeInsets.all(10),
     decoration: BoxDecoration(
-        border: Border(bottom: BorderSide(color:CupertinoColors.activeBlue))),
+        border: Border(bottom: BorderSide(color: CupertinoColors.activeBlue))),
     child: TextField(
       decoration: InputDecoration(
           hintText: text,

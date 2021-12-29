@@ -1,14 +1,19 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 import 'package:flutter/cupertino.dart';
-import 'package:clubix/pages/home.dart';
-import 'package:flutter/material.dart';
 
-class Login extends StatefulWidget {
+import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+
+class clubForm extends StatefulWidget {
   @override
-  State<Login> createState() => _LoginState();
+  State<clubForm> createState() => _SignupState();
 }
 
-class _LoginState extends State<Login> {
+class _SignupState extends State<clubForm> {
+  postData() async {
+    var url = 'http://localhost:3000/users/register';
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,12 +22,10 @@ class _LoginState extends State<Login> {
         decoration: BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.topLeft,
-                colors: [
+                colors:[
                          Color(0xff1d2434),
                           Colors.blue, 
-                          CupertinoColors.activeBlue]
-                          )
-                          ),
+                          CupertinoColors.activeBlue])),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -35,28 +38,28 @@ class _LoginState extends State<Login> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    "Login",
+                    "Club Information",
                     style: TextStyle(color: Colors.white, fontSize: 40),
                   ),
                   SizedBox(
                     height: 10,
                   ),
                   Text(
-                    "Welcome Back",
+                    "",
                     style: TextStyle(color: Colors.white, fontSize: 18),
                   ),
                   TextButton(
                       onPressed: () {
-                        Navigator.pushReplacementNamed(context, '/signup');
+                        Navigator.pushReplacementNamed(context, '/login');
                       },
                       child: Text(
-                        "New User ? Signup",
+                        "You have an account ? login",
                         style: TextStyle(color: Colors.white, fontSize: 18),
                       )),
                 ],
               ),
             ),
-            SizedBox(height: 30),
+            SizedBox(height: 20),
             Expanded(
               child: Container(
                 decoration: BoxDecoration(
@@ -84,8 +87,9 @@ class _LoginState extends State<Login> {
                               ]),
                           child: Column(
                             children: <Widget>[
-                              input("Email"),
-                              input("Password"),
+                              input("Club Name"),
+                              input("About Club"),
+                              input("Club Logo"),
                             ],
                           ),
                         ),
@@ -103,12 +107,12 @@ class _LoginState extends State<Login> {
                               height: 50,
                               child: RaisedButton(
                                 onPressed: () {
-                                  // Navigator.pushReplacementNamed(context, '/home');
-                                  Navigator.push(context,MaterialPageRoute(builder: (context) => Home()));
+                                  Navigator.pushReplacementNamed(
+                                      context, '/login');
                                 },
-                                color:CupertinoColors.activeBlue,
+                                color: CupertinoColors.activeBlue,
                                 child: Text(
-                                  "Login",
+                                  "Club Information",
                                   style: TextStyle(color: Colors.white),
                                 ),
                               ),
@@ -116,7 +120,7 @@ class _LoginState extends State<Login> {
                           ),
                         ),
                         SizedBox(
-                          height: 20,
+                          height: 50,
                         ),
                       ],
                     ),
@@ -132,15 +136,17 @@ class _LoginState extends State<Login> {
 }
 
 input(text) {
-  return Container(
-    padding: EdgeInsets.all(10),
-    decoration: BoxDecoration(
-        border: Border(bottom: BorderSide(color:CupertinoColors.activeBlue))),
-    child: TextField(
-      decoration: InputDecoration(
-          hintText: text,
-          hintStyle: TextStyle(color: CupertinoColors.activeBlue),
-          border: InputBorder.none),
-    ),
+  return Form(
+    key: Key(text),
+    child: Container(
+        padding: EdgeInsets.all(10),
+        decoration: BoxDecoration(
+            border: Border(bottom: BorderSide(color:CupertinoColors.activeBlue))),
+        child: TextField(
+          decoration: InputDecoration(
+              hintText: text,
+              hintStyle: TextStyle(color: CupertinoColors.activeBlue),
+              border: InputBorder.none),
+        )),
   );
 }
