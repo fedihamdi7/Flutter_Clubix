@@ -23,9 +23,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'ClubiX',
-      theme: ThemeData(
+      /*theme: ThemeData(
         primarySwatch: Colors.blue,
-      ),
+      ),*/
       darkTheme: ThemeData.dark(),
         //themeMode: ThemeMode.dark,
       //  home: Wrapper(),

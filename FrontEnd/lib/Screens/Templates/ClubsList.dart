@@ -34,11 +34,7 @@ class _ClubsListState extends State<ClubsList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Clubs List"),
-        centerTitle: true,
-        backgroundColor: Colors.deepPurple[900],
-      ),
+      
       body: ListView.builder(
         itemCount: 2,
         itemBuilder: (BuildContext context, int index) {

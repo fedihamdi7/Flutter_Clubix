@@ -8,12 +8,13 @@ import 'package:home_rental/component/paymentDetailList.dart';
 import 'package:home_rental/component/siderespMenu.dart';
 import 'package:home_rental/config/responsive.dart';
 import 'package:home_rental/config/size_config.dart';
+import 'package:home_rental/responsable/oneelement.dart';
 import 'package:home_rental/style/colors.dart';
 import 'package:home_rental/style/style.dart';
-
+import 'package:flutter_icons/flutter_icons.dart';
+import 'package:home_rental/Models/Datamodel/PlaceModel.dart';
 class Dashteam extends StatelessWidget {
   GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
-
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -54,20 +55,30 @@ class Dashteam extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                      
+                        Header(),
                         SizedBox(
                           height: SizeConfig.blockSizeVertical * 4,
                         ),
                         SizedBox(
                           width: SizeConfig.screenWidth,
                           child: Wrap(
-                            spacing: 5,
+                            spacing: 20,
                             runSpacing: 20,
                             alignment: WrapAlignment.spaceBetween,
+                            children: [
                         
+              
+             
+              Oneelement(
+                placeModel: placeCollection[2],
+              ),
+              SizedBox(height: 60),
+                            ],
                           ),
                         ),
-                        
+                        SizedBox(
+                          height: SizeConfig.blockSizeVertical * 4,
+                        ),
                        
                         SizedBox(
                           height: SizeConfig.blockSizeVertical * 3,
@@ -77,35 +88,20 @@ class Dashteam extends StatelessWidget {
                           height: SizeConfig.blockSizeVertical * 5,
                         ),
                         
-                       
-                       
-                        if (!Responsive.isDesktop(context)) PaymentDetailList()
+             FloatingActionButton(
+            backgroundColor: Colors.blue,
+            foregroundColor: Colors.black,
+            
+            onPressed: () {
+           // Respond to button press
+                },
+          child: Icon(Icons.add),
+)  
                       ],
                     ),
                   ),
                 )),
-            if (Responsive.isDesktop(context))
-              Expanded(
-                flex: 4,
-                child: SafeArea(
-                  child: Container(
-                    width: double.infinity,
-                    height: SizeConfig.screenHeight,
-                    decoration: BoxDecoration(color: AppColors.secondaryBg),
-                    child: SingleChildScrollView(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 30, horizontal: 30),
-                      child: Column(
-                        children: [
-                          AppBarActionItems(),
-                          PaymentDetailList(),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-          ],
+                    ],
         ),
       ),
     );

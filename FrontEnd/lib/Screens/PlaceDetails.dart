@@ -28,6 +28,7 @@ class PlaceDetails extends StatelessWidget {
                     child: Image(
                       fit: BoxFit.cover,
                       image: AssetImage(placeModel.imagePath),
+                      
                     ),
                   ),
                 ),
