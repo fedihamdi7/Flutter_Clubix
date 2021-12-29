@@ -5,11 +5,13 @@ import 'package:home_rental/Screens/Templates/BookedPage.dart';
 import 'package:home_rental/Screens/HomePage.dart';
 import 'package:home_rental/Screens/Templates/NotificationsPage.dart';
 import 'package:home_rental/Screens/Templates/dashboard.dart';
+import 'package:home_rental/clubForm.dart';
 // import 'package:home_rental/singup.dart';
 // import 'package:home_rental/clubForm.dart';
 import 'package:home_rental/login.dart';
 import 'package:flutter/material.dart';
 import 'package:home_rental/Screens/HomePage.dart';
+import 'package:home_rental/signup.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 
@@ -22,6 +24,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      routes: {
+        '/login': (context) => Login(),
+        '/clubForm': (context) => clubForm(),
+        '/signup': (context) => Signup(),
+        '/home': (context) => HomePage()
+        },
       title: 'ClubiX',
       theme: ThemeData(
         primarySwatch: Colors.blue,
