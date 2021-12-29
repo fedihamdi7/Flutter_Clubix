@@ -77,7 +77,7 @@ class _AccountpageState extends State<Dashresponsable> {
                                  ),
                               InfoCard(
                                   // icon: Icon(CupertinoIcons.person_alt_circle),
-                                  icon: '',
+                                  icon: 'asset/images/undraw_profile_re_4a55.svg',
                                   label: 'Team members',
                                    amount: '3'
                                   ),

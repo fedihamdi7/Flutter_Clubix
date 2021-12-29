@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:home_rental/component/appBarActionItems.dart';
 
@@ -6,7 +5,6 @@ import 'package:home_rental/component/header.dart';
 
 import 'package:home_rental/component/infoCard.dart';
 import 'package:home_rental/component/paymentDetailList.dart';
-import 'package:home_rental/component/sideMenu.dart';
 import 'package:home_rental/component/siderespMenu.dart';
 import 'package:home_rental/config/responsive.dart';
 import 'package:home_rental/config/size_config.dart';
@@ -16,14 +14,14 @@ import 'package:home_rental/style/style.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:home_rental/Models/Datamodel/PlaceModel.dart';
 
-class Dashclub extends StatelessWidget {
+class Dashaboutus extends StatelessWidget {
   GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
       key: _drawerKey,
-      drawer: SizedBox(width: 100, child: SideMenu()),
+      drawer: SizedBox(width: 100, child: SiderespMenu()),
       appBar: !Responsive.isDesktop(context)
           ? AppBar(
               elevation: 0,
@@ -48,7 +46,7 @@ class Dashclub extends StatelessWidget {
             if (Responsive.isDesktop(context))
               Expanded(
                 flex: 1,
-                child: SideMenu(),
+                child: SiderespMenu(),
               ),
             Expanded(
                 flex: 10,

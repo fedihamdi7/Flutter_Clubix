@@ -34,38 +34,7 @@ class _HomePageState extends State<HomePage> {
               SizedBox(
                 height: 20,
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Row(
-             
-                  children: [
-                    // Container(
-                    //   height: 55,
-                    //   width: 55,
-                    //   decoration: BoxDecoration(
-                    //     color: Colors.grey[300],
-                    //     borderRadius: BorderRadius.circular(18),
-                    //     boxShadow: [
-                    //       BoxShadow(
-                    //         blurRadius: 15,
-                    //         color: Colors.black.withOpacity(0.3),
-                    //         offset: Offset(5, 5),
-                    //       )
-                    //     ],
-                    //   ),
-                    //   child: Icon(
-                    //     FlutterIcons.th_large_faw,
-                    //     color: kCustomBlackColor,
-                    //   ),
-                    //  ),
-                    
-                     
-             // SizedBox(height: 50),
-
-                    
-                  ],
-                ),
-              ),
+            
               //about us
    SizedBox(height: 50),
               
@@ -97,28 +66,28 @@ class _HomePageState extends State<HomePage> {
                  
                       ),
                     ),
-                    Flexible(
-                      flex: 1,
-                      child: Container(
-                        height: 65,
-                        width: 65,
-                        decoration: BoxDecoration(
-                          color: kPrimaryColor,
-                          borderRadius: BorderRadius.circular(24),
-                          boxShadow: [
-                            BoxShadow(
-                              blurRadius: 15,
-                              color: Colors.black.withOpacity(0.4),
-                              offset: Offset(-5, 10),
-                            )
-                          ],
-                        ),
-                        child: Icon(
-                          FlutterIcons.sliders_h_faw5s,
-                          color: Colors.grey[300],
-                        ),
-                      ),
-                    ),
+                    // Flexible(
+                    //   flex: 1,
+                    //   child: Container(
+                    //     height: 65,
+                    //     width: 65,
+                    //     // decoration: BoxDecoration(
+                    //     //   color: kPrimaryColor,
+                    //     //   borderRadius: BorderRadius.circular(24),
+                    //     //   boxShadow: [
+                    //     //     BoxShadow(
+                    //     //       blurRadius: 15,
+                    //     //       color: Colors.black.withOpacity(0.4),
+                    //     //       offset: Offset(-5, 10),
+                    //     //     )
+                    //     //   ],
+                    //     // ),
+                    //     // child: Icon(
+                    //     //   FlutterIcons.sliders_h_faw5s,
+                    //     //   color: Colors.grey[300],
+                    //     // ),
+                    //   ),
+                    // ),
                   ],
                 ),
               ),
