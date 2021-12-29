@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:home_rental/Screens/Templates/Dashresponsable.dart';
-import 'package:home_rental/Screens/Templates/BookedPage.dart';
+import 'package:home_rental/Screens/Templates/ClubsList.dart';
 import 'package:home_rental/Screens/HomePage.dart';
 import 'package:home_rental/Screens/Templates/NotificationsPage.dart';
 import 'package:home_rental/Screens/Templates/dashboard.dart';
@@ -61,7 +61,7 @@ class _WrapperState extends State<Bar> {
   List<Widget> _buildScreens() {
     return [
       HomePage(),
-      BookedPage(),
+      ClubsList(),
       NotificationPage(),
       Dashresponsable(),
     ];
