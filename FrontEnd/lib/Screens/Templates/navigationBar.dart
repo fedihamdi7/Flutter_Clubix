@@ -12,36 +12,12 @@ import 'package:flutter/material.dart';
 import 'package:home_rental/Screens/HomePage.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
-
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'ClubiX',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      darkTheme: ThemeData.dark(),
-        //themeMode: ThemeMode.dark,
-      //  home: Wrapper(),
-          home: Login(),
-
-     // home: DashboardResp(),
-    );
-  }
-}
-
-class Wrapper extends StatefulWidget {
+class Bar extends StatefulWidget {
   @override
   _WrapperState createState() => _WrapperState();
 }
 
-class _WrapperState extends State<Wrapper> {
+class _WrapperState extends State<Bar> {
   PersistentTabController _controller =
       PersistentTabController(initialIndex: 0);
 
