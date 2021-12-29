@@ -8,7 +8,7 @@ import 'package:home_rental/Models/ViewModel/RecentEvent.dart';
 import 'package:home_rental/Models/constants.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:home_rental/Screens/Templates/Dashresponsable.dart';
-import 'package:home_rental/Screens/Templates/BookedPage.dart';
+import 'package:home_rental/Screens/Templates/ClubsList.dart';
 import 'package:home_rental/Screens/HomePage.dart';
 import 'package:home_rental/Screens/Templates/NotificationsPage.dart';
 

@@ -32,7 +32,10 @@ dependencies:
   fl_chart: ^0.35.0
   flutter_icons: ^1.1.0
   glassmorphism_ui: ^0.1.0
+  http: ^0.13.4
   persistent_bottom_nav_bar: ^4.0.2
+  api_cache_manager: ^1.0.2
+  dio: ^4.0.4
 
 
 dev_dependencies:
