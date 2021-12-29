@@ -1,5 +1,4 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
@@ -22,10 +21,7 @@ class _SignupState extends State<Signup> {
         decoration: BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.topLeft,
-                colors:[
-                         Color(0xff1d2434),
-                          Colors.blue, 
-                          CupertinoColors.activeBlue])),
+                colors: [Colors.orange, Colors.purple, Colors.deepPurple])),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -101,7 +97,7 @@ class _SignupState extends State<Signup> {
                           margin: EdgeInsets.symmetric(horizontal: 50),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(50),
-                              color: CupertinoColors.activeBlue),
+                              color: Colors.purple[900]),
                           child: Center(
                             child: ButtonTheme(
                               height: 50,
@@ -110,7 +106,7 @@ class _SignupState extends State<Signup> {
                                   Navigator.pushReplacementNamed(
                                       context, '/login');
                                 },
-                                color: CupertinoColors.activeBlue,
+                                color: Colors.purple[900],
                                 child: Text(
                                   "Signup",
                                   style: TextStyle(color: Colors.white),
@@ -141,11 +137,11 @@ input(text) {
     child: Container(
         padding: EdgeInsets.all(10),
         decoration: BoxDecoration(
-            border: Border(bottom: BorderSide(color:CupertinoColors.activeBlue))),
+            border: Border(bottom: BorderSide(color: Colors.purpleAccent))),
         child: TextField(
           decoration: InputDecoration(
               hintText: text,
-              hintStyle: TextStyle(color: CupertinoColors.activeBlue),
+              hintStyle: TextStyle(color: Colors.purple),
               border: InputBorder.none),
         )),
   );

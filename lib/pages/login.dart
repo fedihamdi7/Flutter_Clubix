@@ -1,5 +1,5 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-import 'package:flutter/cupertino.dart';
+
 import 'package:clubix/pages/home.dart';
 import 'package:flutter/material.dart';
 
@@ -17,10 +17,9 @@ class _LoginState extends State<Login> {
         decoration: BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.topLeft,
-                colors: [
-                         Color(0xff1d2434),
-                          Colors.blue, 
-                          CupertinoColors.activeBlue]
+                colors: [Colors.deepPurple,
+                          Colors.purple, 
+                          Colors.orange]
                           )
                           ),
         child: Column(
@@ -97,7 +96,7 @@ class _LoginState extends State<Login> {
                           margin: EdgeInsets.symmetric(horizontal: 50),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(50),
-                              color: CupertinoColors.activeBlue),
+                              color: Colors.purple[900]),
                           child: Center(
                             child: ButtonTheme(
                               height: 50,
@@ -106,7 +105,7 @@ class _LoginState extends State<Login> {
                                   // Navigator.pushReplacementNamed(context, '/home');
                                   Navigator.push(context,MaterialPageRoute(builder: (context) => Home()));
                                 },
-                                color:CupertinoColors.activeBlue,
+                                color: Colors.purple[900],
                                 child: Text(
                                   "Login",
                                   style: TextStyle(color: Colors.white),
@@ -135,11 +134,11 @@ input(text) {
   return Container(
     padding: EdgeInsets.all(10),
     decoration: BoxDecoration(
-        border: Border(bottom: BorderSide(color:CupertinoColors.activeBlue))),
+        border: Border(bottom: BorderSide(color: Colors.purpleAccent))),
     child: TextField(
       decoration: InputDecoration(
           hintText: text,
-          hintStyle: TextStyle(color: CupertinoColors.activeBlue),
+          hintStyle: TextStyle(color: Colors.purple),
           border: InputBorder.none),
     ),
   );
