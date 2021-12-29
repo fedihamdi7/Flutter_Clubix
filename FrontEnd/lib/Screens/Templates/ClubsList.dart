@@ -4,7 +4,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:home_rental/template/club_card.dart';
-import 'package:http/http.dart';
+// import 'package:http/http.dart';
 
 class ClubsList extends StatefulWidget {
   @override
@@ -12,20 +12,23 @@ class ClubsList extends StatefulWidget {
 }
 
 class _ClubsListState extends State<ClubsList> {
-  Map data = {};
-  void getClubs() async {
-    Response response =
-        await get(Uri.parse("http://localhost:3000/clubs/clubs_list"));
-    Map data = jsonDecode(response.body);
-    setState(() {
-      this.data = data;
-    });
-  }
+  Map data = {
+    "name" : "IEEE",
+    "logo" : "image1.jpg",
+  };
+  // void getClubs() async {
+  //   Response response =
+  //       await get(Uri.parse("http://localhost:3000/clubs/clubs_list"));
+  //   Map data = jsonDecode(response.body);
+  //   setState(() {
+  //     this.data = data;
+  //   });
+  // }
 
   @override
   void initState() {
     super.initState();
-    getClubs();
+    // getClubs();
   }
 
   @override
@@ -37,11 +40,11 @@ class _ClubsListState extends State<ClubsList> {
         backgroundColor: Colors.deepPurple[900],
       ),
       body: ListView.builder(
-        //itemCount: data['clubs'].length,
+        itemCount: 2,
         itemBuilder: (BuildContext context, int index) {
           return ClubCard(
-            name: data['clubs'][index]['name'],
-            logo: data['clubs'][index]['logo'],
+            name: data['name'],
+            logo: data['logo'],
           );
         },
       ),

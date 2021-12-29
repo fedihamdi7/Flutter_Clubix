@@ -34,7 +34,7 @@ class ClubCard extends StatelessWidget {
           ),
         ],
         image: DecorationImage(
-          image: AssetImage("assets/club_logo/$logo"),
+          image: AssetImage("assets/images/$logo"),
           fit: BoxFit.cover,
         ),
       ),
