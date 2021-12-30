@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:home_rental/component/appBarActionItems.dart';
 
 import 'package:home_rental/component/header.dart';
-
 import 'package:home_rental/component/infoCard.dart';
 import 'package:home_rental/component/paymentDetailList.dart';
 import 'package:home_rental/component/siderespMenu.dart';
 import 'package:home_rental/config/responsive.dart';
 import 'package:home_rental/config/size_config.dart';
-import 'package:home_rental/responsable/oneelement.dart';
+import 'package:home_rental/responsable/team/oneelementTeam.dart';
+import 'package:home_rental/responsable/team/addTeam.dart';
 import 'package:home_rental/style/colors.dart';
 import 'package:home_rental/style/style.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -69,7 +69,7 @@ class Dashteam extends StatelessWidget {
                         
               
              
-              Oneelement(
+              oneelementTeam(
                 placeModel: placeCollection[2],
               ),
               SizedBox(height: 60),
@@ -94,6 +94,10 @@ class Dashteam extends StatelessWidget {
             
             onPressed: () {
            // Respond to button press
+           Navigator.push(
+                 context,
+                MaterialPageRoute(builder: (context) =>addTeam() ),
+                  );
                 },
           child: Icon(Icons.add),
 )  

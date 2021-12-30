@@ -5,6 +5,7 @@ import 'package:home_rental/Screens/Templates/ClubsList.dart';
 import 'package:home_rental/Screens/HomePage.dart';
 import 'package:home_rental/Screens/Templates/NotificationsPage.dart';
 import 'package:home_rental/Screens/Templates/dashboard.dart';
+import 'package:home_rental/responsable/team/addTeam.dart';
 import 'package:home_rental/signup.dart';
 import 'package:home_rental/clubForm.dart';
 import 'package:home_rental/login.dart';
@@ -26,13 +27,16 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'ClubiX',
-      initialRoute: '/login',
+      // initialRoute: '/login',
       routes: {
         '/login': (context) => Login(),
         '/signup': (context) => Signup(),
         '/home': (context) => HomePage(),
         '/clubForm': (context) => clubForm(),
         '/clubs_list': (context) => ClubsList(),
+        '/dash_admin': (context) => Dashboard(),
+        '/dash_respo': (context) => Dashresponsable(),
+        '/addTeam': (context) => addTeam(),
       },
       /*theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -41,6 +45,7 @@ class MyApp extends StatelessWidget {
         //themeMode: ThemeMode.dark,
       //  home: Wrapper(),
           home: Login(),
+          // home: Dashboard(),
 
      // home: DashboardResp(),
     );

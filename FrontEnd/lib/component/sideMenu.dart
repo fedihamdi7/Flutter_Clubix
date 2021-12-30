@@ -44,7 +44,7 @@ class SideMenu extends StatelessWidget {
                   iconSize: 20,
                   padding: EdgeInsets.symmetric(vertical: 20.0),
                   icon: SvgPicture.asset(
-                    'asset/images/pie-chart.svg',
+                    'asset/images/user.svg',
                     color: AppColors.iconGray,
                   ),
                   onPressed: () {}),
@@ -52,34 +52,11 @@ class SideMenu extends StatelessWidget {
                   iconSize: 20,
                   padding: EdgeInsets.symmetric(vertical: 20.0),
                   icon: SvgPicture.asset(
-                    'asset/images/clipboard.svg',
+                    'asset/images/club.svg',
                     color: AppColors.iconGray,
                   ),
                   onPressed: () {}),
-              IconButton(
-                  iconSize: 20,
-                  padding: EdgeInsets.symmetric(vertical: 20.0),
-                  icon: SvgPicture.asset(
-                    'asset/images/credit-card.svg',
-                    color: AppColors.iconGray,
-                  ),
-                  onPressed: () {}),
-              IconButton(
-                  iconSize: 20,
-                  padding: EdgeInsets.symmetric(vertical: 20.0),
-                  icon: SvgPicture.asset(
-                    'assets/trophy.svg',
-                    color: AppColors.iconGray,
-                  ),
-                  onPressed: () {}),
-              IconButton(
-                  iconSize: 20,
-                  padding: EdgeInsets.symmetric(vertical: 20.0),
-                  icon: SvgPicture.asset(
-                    'assets/invoice.svg',
-                    color: AppColors.iconGray,
-                  ),
-                  onPressed: () {}),
+             
             ],
           ),
         ),

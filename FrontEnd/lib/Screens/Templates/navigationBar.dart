@@ -62,8 +62,9 @@ class _WrapperState extends State<Bar> {
     return [
       HomePage(),
       ClubsList(),
-      NotificationPage(),
       Dashresponsable(),
+      Dashboard(),
+     
     ];
   }
 
@@ -82,14 +83,14 @@ class _WrapperState extends State<Bar> {
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.bell_fill),
-        title: ("Notifications"),
+        icon: Icon(CupertinoIcons.dashboard),
+        title: ("User"),
         activeColorPrimary: CupertinoColors.activeBlue,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
-      PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.person_alt_circle),
-        title: ("User"),
+       PersistentBottomNavBarItem(
+        icon: Icon(CupertinoIcons.logout),
+        title: ("Notifications"),
         activeColorPrimary: CupertinoColors.activeBlue,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),

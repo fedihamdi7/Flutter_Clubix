@@ -66,12 +66,12 @@ class Dashboard extends StatelessWidget {
                             alignment: WrapAlignment.spaceBetween,
                             children: [
                               InfoCard(
-                                  icon: 'asset/images/credit-card.svg',
+                                  icon: 'asset/images/user.svg',
                                   label: 'Users',
                                     amount: '15'
                                  ),
                               InfoCard(
-                                  icon: 'asset/images/transfer.svg',
+                                  icon: 'asset/images/club.svg',
                                   label: 'Clubs',
                                    amount: '3'
                                   ),
