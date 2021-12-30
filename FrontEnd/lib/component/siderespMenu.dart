@@ -57,7 +57,7 @@ class SiderespMenu extends StatelessWidget {
                   iconSize: 20,
                   padding: EdgeInsets.symmetric(vertical: 20.0),
                   icon: SvgPicture.asset(
-                    'asset/images/calendar.svg',
+                    'asset/images/event.svg',
                     color: AppColors.iconGray,
                   ),
                  onPressed: () { Navigator.push(
@@ -68,7 +68,7 @@ class SiderespMenu extends StatelessWidget {
                   iconSize: 20,
                   padding: EdgeInsets.symmetric(vertical: 20.0),
                   icon: SvgPicture.asset(
-                    'asset/images/credit-card.svg',
+                    'asset/images/about.svg',
                     color: AppColors.iconGray,
                   ),
                   onPressed: () { Navigator.push(
@@ -79,7 +79,7 @@ class SiderespMenu extends StatelessWidget {
                   iconSize: 20,
                   padding: EdgeInsets.symmetric(vertical: 20.0),
                   icon: SvgPicture.asset(
-                    'asset/images/credit-card.svg',
+                    'asset/images/post.svg',
                     color: AppColors.iconGray,
                   ),
                   onPressed: () { Navigator.push(
@@ -90,7 +90,7 @@ class SiderespMenu extends StatelessWidget {
                   iconSize: 20,
                   padding: EdgeInsets.symmetric(vertical: 20.0),
                   icon: SvgPicture.asset(
-                    'asset/images/credit-card.svg',
+                    'asset/images/team.svg',
                     color: AppColors.iconGray,
                   ),
                   onPressed: () { Navigator.push(
