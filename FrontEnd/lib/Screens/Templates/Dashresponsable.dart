@@ -82,7 +82,7 @@ class _AccountpageState extends State<Dashresponsable> {
                                    amount: '3'
                                   ),
                               InfoCard(
-                                  icon: 'assets/bank.svg',
+                                  icon: 'asset/images/about.svg',
                                   label: 'Post',
                                   amount: '1'),
                               InfoCard(
