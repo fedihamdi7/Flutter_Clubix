@@ -6,11 +6,11 @@ import 'package:home_rental/Screens/HomePage.dart';
 import 'package:home_rental/Screens/Templates/Dashresponsable.dart';
 import 'package:home_rental/config/size_config.dart';
 import 'package:home_rental/Screens/Templates/dashboard.dart';
-import 'package:home_rental/responsable/dashaboutus.dart';
+import 'package:home_rental/responsable/about/dashaboutus.dart';
 
-import 'package:home_rental/responsable/dashevent.dart';
-import 'package:home_rental/responsable/dashpost.dart';
-import 'package:home_rental/responsable/dashteam.dart';
+import 'package:home_rental/responsable/event/dashevent.dart';
+import 'package:home_rental/responsable/post/dashpost.dart';
+import 'package:home_rental/responsable/team/dashteam.dart';
 import 'package:home_rental/style/colors.dart';
 
 class SiderespMenu extends StatelessWidget {
@@ -57,23 +57,23 @@ class SiderespMenu extends StatelessWidget {
                   iconSize: 20,
                   padding: EdgeInsets.symmetric(vertical: 20.0),
                   icon: SvgPicture.asset(
-                    'asset/images/event.svg',
+                    'asset/images/about.svg',
                     color: AppColors.iconGray,
                   ),
                  onPressed: () { Navigator.push(
                  context,
-                MaterialPageRoute(builder: (context) => Dashevent()),
+                MaterialPageRoute(builder: (context) => Dashaboutus()),
                   );}),
               IconButton(
                   iconSize: 20,
                   padding: EdgeInsets.symmetric(vertical: 20.0),
                   icon: SvgPicture.asset(
-                    'asset/images/about.svg',
+                    'asset/images/event.svg',
                     color: AppColors.iconGray,
                   ),
                   onPressed: () { Navigator.push(
     context,
-    MaterialPageRoute(builder: (context) => Dashpost()),
+    MaterialPageRoute(builder: (context) => Dashevent()),
   );}),
          IconButton(
                   iconSize: 20,
@@ -84,7 +84,7 @@ class SiderespMenu extends StatelessWidget {
                   ),
                   onPressed: () { Navigator.push(
     context,
-    MaterialPageRoute(builder: (context) => Dashteam()),
+    MaterialPageRoute(builder: (context) => Dashpost()),
   );}),
     IconButton(
                   iconSize: 20,
@@ -95,32 +95,9 @@ class SiderespMenu extends StatelessWidget {
                   ),
                   onPressed: () { Navigator.push(
     context,
-    MaterialPageRoute(builder: (context) => Dashaboutus()),
+    MaterialPageRoute(builder: (context) => Dashteam()),
   );}),
-              // IconButton(
-              //     iconSize: 20,
-              //     padding: EdgeInsets.symmetric(vertical: 20.0),
-              //     icon: SvgPicture.asset(
-              //       'assets/credit-card.svg',
-              //       color: AppColors.iconGray,
-              //     ),
-              //     onPressed: () {}),
-              // IconButton(
-              //     iconSize: 20,
-              //     padding: EdgeInsets.symmetric(vertical: 20.0),
-              //     icon: SvgPicture.asset(
-              //       'assets/trophy.svg',
-              //       color: AppColors.iconGray,
-              //     ),
-              //     onPressed: () {}),
-              // IconButton(
-              //     iconSize: 20,
-              //     padding: EdgeInsets.symmetric(vertical: 20.0),
-              //     icon: SvgPicture.asset(
-              //       'assets/invoice.svg',
-              //       color: AppColors.iconGray,
-              //     ),
-              //     onPressed: () {}),
+             
             ],
           ),
         ),

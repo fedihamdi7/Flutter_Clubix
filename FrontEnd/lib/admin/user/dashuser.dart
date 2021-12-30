@@ -1,10 +1,14 @@
+
 import 'package:flutter/material.dart';
+import 'package:home_rental/admin/user/addUser.dart';
+import 'package:home_rental/admin/user/oneelementUser.dart';
 import 'package:home_rental/component/appBarActionItems.dart';
 
 import 'package:home_rental/component/header.dart';
 
 import 'package:home_rental/component/infoCard.dart';
 import 'package:home_rental/component/paymentDetailList.dart';
+import 'package:home_rental/component/sideMenu.dart';
 import 'package:home_rental/component/siderespMenu.dart';
 import 'package:home_rental/config/responsive.dart';
 import 'package:home_rental/config/size_config.dart';
@@ -13,14 +17,15 @@ import 'package:home_rental/style/colors.dart';
 import 'package:home_rental/style/style.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:home_rental/Models/Datamodel/PlaceModel.dart';
-class Dashteam extends StatelessWidget {
+
+class Dashuser extends StatelessWidget {
   GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
       key: _drawerKey,
-      drawer: SizedBox(width: 100, child: SiderespMenu()),
+      drawer: SizedBox(width: 100, child: SideMenu()),
       appBar: !Responsive.isDesktop(context)
           ? AppBar(
               elevation: 0,
@@ -45,7 +50,7 @@ class Dashteam extends StatelessWidget {
             if (Responsive.isDesktop(context))
               Expanded(
                 flex: 1,
-                child: SiderespMenu(),
+                child: SideMenu(),
               ),
             Expanded(
                 flex: 10,
@@ -69,7 +74,7 @@ class Dashteam extends StatelessWidget {
                         
               
              
-              Oneelement(
+              oneelementuser(
                 placeModel: placeCollection[2],
               ),
               SizedBox(height: 60),
@@ -94,6 +99,10 @@ class Dashteam extends StatelessWidget {
             
             onPressed: () {
            // Respond to button press
+           Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => addUser()),
+  );
                 },
           child: Icon(Icons.add),
 )  

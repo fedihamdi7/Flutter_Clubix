@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:home_rental/component/appBarActionItems.dart';
 
@@ -6,24 +5,25 @@ import 'package:home_rental/component/header.dart';
 
 import 'package:home_rental/component/infoCard.dart';
 import 'package:home_rental/component/paymentDetailList.dart';
-import 'package:home_rental/component/sideMenu.dart';
 import 'package:home_rental/component/siderespMenu.dart';
 import 'package:home_rental/config/responsive.dart';
 import 'package:home_rental/config/size_config.dart';
+import 'package:home_rental/responsable/event/addEvent.dart';
+import 'package:home_rental/responsable/event/oneelementevent.dart';
 import 'package:home_rental/responsable/oneelement.dart';
 import 'package:home_rental/style/colors.dart';
 import 'package:home_rental/style/style.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:home_rental/Models/Datamodel/PlaceModel.dart';
 
-class Dashuser extends StatelessWidget {
+class Dashevent extends StatelessWidget {
   GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
       key: _drawerKey,
-      drawer: SizedBox(width: 100, child: SideMenu()),
+      drawer: SizedBox(width: 100, child: SiderespMenu()),
       appBar: !Responsive.isDesktop(context)
           ? AppBar(
               elevation: 0,
@@ -48,7 +48,7 @@ class Dashuser extends StatelessWidget {
             if (Responsive.isDesktop(context))
               Expanded(
                 flex: 1,
-                child: SideMenu(),
+                child: SiderespMenu(),
               ),
             Expanded(
                 flex: 10,
@@ -72,7 +72,7 @@ class Dashuser extends StatelessWidget {
                         
               
              
-              Oneelement(
+              oneelementevent(
                 placeModel: placeCollection[2],
               ),
               SizedBox(height: 60),
@@ -97,6 +97,10 @@ class Dashuser extends StatelessWidget {
             
             onPressed: () {
            // Respond to button press
+             Navigator.push(
+                 context,
+                MaterialPageRoute(builder: (context) =>addEvent() ),
+                  );
                 },
           child: Icon(Icons.add),
 )  
@@ -110,3 +114,90 @@ class Dashuser extends StatelessWidget {
     );
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//   @override
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: SafeArea(
+//         child: Padding(
+//           padding: const EdgeInsets.symmetric(horizontal: 16.0),
+//           child: ListView(
+//             shrinkWrap: true,
+//             // crossAxisAlignment: CrossAxisAlignment.start,
+//             children: [
+//               SizedBox(
+//                 height: 20,
+//               ),
+            
+//               //about us
+//    SizedBox(height: 50),
+              
+//               SizedBox(height: 30),
+//               Oneelement(
+//                 placeModel: placeCollection[2],
+//               ),
+//               SizedBox(height: 60),
+            
+              
+           
+          
+         
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+  
+
+// }

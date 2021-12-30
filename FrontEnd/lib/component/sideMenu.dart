@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:home_rental/Screens/HomePage.dart';
+import 'package:home_rental/admin/club/dashclub.dart';
+import 'package:home_rental/admin/user/dashuser.dart';
 import 'package:home_rental/config/size_config.dart';
 import 'package:home_rental/style/colors.dart';
 
@@ -39,47 +42,33 @@ class SideMenu extends StatelessWidget {
                     'asset/images/home.svg',
                     color: AppColors.iconGray,
                   ),
-                  onPressed: () {}),
+                  onPressed: () {Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => HomePage()),
+  );}),
               IconButton(
                   iconSize: 20,
                   padding: EdgeInsets.symmetric(vertical: 20.0),
                   icon: SvgPicture.asset(
-                    'asset/images/pie-chart.svg',
+                    'asset/images/user.svg',
                     color: AppColors.iconGray,
                   ),
-                  onPressed: () {}),
+                  onPressed: () {Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => Dashuser()),
+  );}),
               IconButton(
                   iconSize: 20,
                   padding: EdgeInsets.symmetric(vertical: 20.0),
                   icon: SvgPicture.asset(
-                    'asset/images/clipboard.svg',
+                    'asset/images/club.svg',
                     color: AppColors.iconGray,
                   ),
-                  onPressed: () {}),
-              IconButton(
-                  iconSize: 20,
-                  padding: EdgeInsets.symmetric(vertical: 20.0),
-                  icon: SvgPicture.asset(
-                    'asset/images/credit-card.svg',
-                    color: AppColors.iconGray,
-                  ),
-                  onPressed: () {}),
-              IconButton(
-                  iconSize: 20,
-                  padding: EdgeInsets.symmetric(vertical: 20.0),
-                  icon: SvgPicture.asset(
-                    'assets/trophy.svg',
-                    color: AppColors.iconGray,
-                  ),
-                  onPressed: () {}),
-              IconButton(
-                  iconSize: 20,
-                  padding: EdgeInsets.symmetric(vertical: 20.0),
-                  icon: SvgPicture.asset(
-                    'assets/invoice.svg',
-                    color: AppColors.iconGray,
-                  ),
-                  onPressed: () {}),
+                  onPressed: () {Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => Dashclub()),
+  );}),
+             
             ],
           ),
         ),

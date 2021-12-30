@@ -77,16 +77,16 @@ class _AccountpageState extends State<Dashresponsable> {
                                  ),
                               InfoCard(
                                   // icon: Icon(CupertinoIcons.person_alt_circle),
-                                  icon: 'asset/images/undraw_profile_re_4a55.svg',
+                                  icon: 'asset/images/team.svg',
                                   label: 'Team members',
                                    amount: '3'
                                   ),
                               InfoCard(
-                                  icon: 'asset/images/about.svg',
+                                  icon: 'asset/images/post.svg',
                                   label: 'Post',
                                   amount: '1'),
                               InfoCard(
-                                  icon: 'assets/invoice.svg',
+                                  icon: 'asset/images/about.svg',
                                   label: 'about us',
                                   amount: '1'),
                             ],
