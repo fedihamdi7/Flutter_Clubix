@@ -57,23 +57,23 @@ class SiderespMenu extends StatelessWidget {
                   iconSize: 20,
                   padding: EdgeInsets.symmetric(vertical: 20.0),
                   icon: SvgPicture.asset(
-                    'asset/images/event.svg',
+                    'asset/images/about.svg',
                     color: AppColors.iconGray,
                   ),
                  onPressed: () { Navigator.push(
                  context,
-                MaterialPageRoute(builder: (context) => Dashevent()),
+                MaterialPageRoute(builder: (context) => Dashaboutus()),
                   );}),
               IconButton(
                   iconSize: 20,
                   padding: EdgeInsets.symmetric(vertical: 20.0),
                   icon: SvgPicture.asset(
-                    'asset/images/about.svg',
+                    'asset/images/event.svg',
                     color: AppColors.iconGray,
                   ),
                   onPressed: () { Navigator.push(
     context,
-    MaterialPageRoute(builder: (context) => Dashpost()),
+    MaterialPageRoute(builder: (context) => Dashevent()),
   );}),
          IconButton(
                   iconSize: 20,
@@ -84,7 +84,7 @@ class SiderespMenu extends StatelessWidget {
                   ),
                   onPressed: () { Navigator.push(
     context,
-    MaterialPageRoute(builder: (context) => Dashteam()),
+    MaterialPageRoute(builder: (context) => Dashpost()),
   );}),
     IconButton(
                   iconSize: 20,
@@ -95,7 +95,7 @@ class SiderespMenu extends StatelessWidget {
                   ),
                   onPressed: () { Navigator.push(
     context,
-    MaterialPageRoute(builder: (context) => Dashaboutus()),
+    MaterialPageRoute(builder: (context) => Dashteam()),
   );}),
              
             ],

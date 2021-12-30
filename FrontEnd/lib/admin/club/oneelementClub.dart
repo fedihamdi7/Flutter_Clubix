@@ -6,12 +6,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:home_rental/Screens/HomePage.dart';
 import 'package:flutter/material.dart';
 import 'package:home_rental/Screens/Templates/navigationBar.dart';
+import 'package:home_rental/admin/club/editClub.dart';
+import 'package:home_rental/admin/user/editUser.dart';
 import 'package:home_rental/responsable/event/EditEvent.dart';
 import 'package:home_rental/responsable/team/editTeam.dart';
 
-class oneelementevent extends StatelessWidget {
+class oneelementclub extends StatelessWidget {
   final PlaceModel placeModel;
-  oneelementevent({this.placeModel});
+  oneelementclub({this.placeModel});
 
   @override
   Widget build(BuildContext context) {
@@ -66,13 +68,13 @@ class oneelementevent extends StatelessWidget {
                       height: 12,
                     ),
                     Text(
-                      "Event Date ✨",
+                      "Club Name ✨",
                       style: Theme.of(context).textTheme.headline5,
                     ),
                     SizedBox(
                       height: 12,
                     ),
-                    Text(""),
+                    Text("club description"),
                     SizedBox(
                       height: 12,
                     ),
@@ -94,7 +96,7 @@ class oneelementevent extends StatelessWidget {
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => editEvent()));
+                                            builder: (context) => editClub()));
                                   },
                                   color: CupertinoColors.activeBlue,
                                   child: Text(

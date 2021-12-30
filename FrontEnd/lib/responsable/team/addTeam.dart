@@ -8,6 +8,9 @@ class addTeam extends StatefulWidget {
 class _addTeam extends State<addTeam> {
   @override
   Widget build(BuildContext context) {
-    
+    return Text(
+      'Hello team! How are you?',
+      textAlign: TextAlign.center,
+    );
   }
 }

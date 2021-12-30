@@ -1,5 +1,7 @@
 
 import 'package:flutter/material.dart';
+import 'package:home_rental/admin/club/addCub.dart';
+import 'package:home_rental/admin/club/oneelementClub.dart';
 import 'package:home_rental/component/appBarActionItems.dart';
 
 import 'package:home_rental/component/header.dart';
@@ -72,7 +74,7 @@ class Dashclub extends StatelessWidget {
                         
               
              
-              Oneelement(
+              oneelementclub(
                 placeModel: placeCollection[2],
               ),
               SizedBox(height: 60),
@@ -97,6 +99,10 @@ class Dashclub extends StatelessWidget {
             
             onPressed: () {
            // Respond to button press
+           Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => addClub()),
+  );
                 },
           child: Icon(Icons.add),
 )  

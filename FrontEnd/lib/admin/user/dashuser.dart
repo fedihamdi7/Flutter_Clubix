@@ -1,5 +1,7 @@
 
 import 'package:flutter/material.dart';
+import 'package:home_rental/admin/user/addUser.dart';
+import 'package:home_rental/admin/user/oneelementUser.dart';
 import 'package:home_rental/component/appBarActionItems.dart';
 
 import 'package:home_rental/component/header.dart';
@@ -72,7 +74,7 @@ class Dashuser extends StatelessWidget {
                         
               
              
-              Oneelement(
+              oneelementuser(
                 placeModel: placeCollection[2],
               ),
               SizedBox(height: 60),
@@ -97,6 +99,10 @@ class Dashuser extends StatelessWidget {
             
             onPressed: () {
            // Respond to button press
+           Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => addUser()),
+  );
                 },
           child: Icon(Icons.add),
 )  

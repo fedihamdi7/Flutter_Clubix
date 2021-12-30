@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:home_rental/Screens/HomePage.dart';
 import 'package:flutter/material.dart';
 import 'package:home_rental/Screens/Templates/navigationBar.dart';
+import 'package:home_rental/responsable/team/editTeam.dart';
 
 class oneelementTeam extends StatelessWidget {
   final PlaceModel placeModel;
@@ -75,32 +76,61 @@ class oneelementTeam extends StatelessWidget {
                       height: 12,
                     ),
                     Flexible(
-                      child: Row(
-                          //  child: ButtonTheme(
-                          //       height: 50,
-                          //       child: RaisedButton(
-                          //         onPressed: () {
-                          //           // Navigator.pushReplacementNamed(context, '/home');
-                          //           Navigator.push(
-                          //               context,
-                          //               MaterialPageRoute(
-                          //                   builder: (context) => Bar()));
-                          //         },
-                          //         color: CupertinoColors.activeBlue,
-                          //         child: Text(
-                          //           "Edit",
-                          //           style: TextStyle(color: Colors.white),
-                          //         ),
-                          //       ),
-                          //     ),
+                                                      // child: Row(
+                                // TextButton(
+                                //   style: TextButton.styleFrom(
+                                //     primary: Colors.blue,
+                                //   ),
+                                //   onPressed: () { },
+                                //   child: Text('TextButton'),
+                                // )
+
+                           child: ButtonTheme(
+                                height: 50,
+                                child: RaisedButton(
+                                  onPressed: () {
+                                    // Navigator.pushReplacementNamed(context, '/home');
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => editTeam()));
+                                  },
+                                  color: CupertinoColors.activeBlue,
+                                  child: Text(
+                                    "Edit",
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                ),
+                              ),
+                      
+                              //  child: ButtonTheme(
+                              //   height: 50,
+                              //   child: RaisedButton(
+                              //     onPressed: () {
+                              //       // Navigator.pushReplacementNamed(context, '/home');
+                              //       Navigator.push(
+                              //           context,
+                              //           MaterialPageRoute(
+                              //               builder: (context) => Bar()));
+                              //     },
+                              //     color: CupertinoColors.systemRed,
+                              //     child: Text(
+                              //       "Delete",
+                              //       style: TextStyle(color: Colors.white),
+                              //     ),
+                              //   ),
+                              // ),
                           // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 
                           ),
-                    ),
+                    // ),
+                    
                     SizedBox(
                       height: 20,
                     ),
+                    
                   ],
+                  
                 ),
               ),
             ],

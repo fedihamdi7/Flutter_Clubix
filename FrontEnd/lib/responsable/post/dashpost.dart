@@ -8,7 +8,7 @@ import 'package:home_rental/component/paymentDetailList.dart';
 import 'package:home_rental/component/siderespMenu.dart';
 import 'package:home_rental/config/responsive.dart';
 import 'package:home_rental/config/size_config.dart';
-import 'package:home_rental/responsable/oneelement.dart';
+import 'package:home_rental/responsable/post/oneelementPost.dart';
 import 'package:home_rental/style/colors.dart';
 import 'package:home_rental/style/style.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -70,7 +70,7 @@ class Dashpost extends StatelessWidget {
                         
               
              
-              Oneelement(
+              oneelementPost(
                 placeModel: placeCollection[2],
               ),
               SizedBox(height: 60),
@@ -89,15 +89,7 @@ class Dashpost extends StatelessWidget {
                           height: SizeConfig.blockSizeVertical * 5,
                         ),
                         
-             FloatingActionButton(
-            backgroundColor: Colors.blue,
-            foregroundColor: Colors.black,
-            
-            onPressed: () {
-           // Respond to button press
-                },
-          child: Icon(Icons.add),
-)  
+             
                       ],
                     ),
                   ),

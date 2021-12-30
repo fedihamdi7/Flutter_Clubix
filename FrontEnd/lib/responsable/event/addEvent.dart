@@ -8,6 +8,9 @@ class addEvent extends StatefulWidget {
 class _addEvent extends State<addEvent> {
   @override
   Widget build(BuildContext context) {
-    
+     return Text(
+      'Hello add event ! How are you?',
+      textAlign: TextAlign.center,
+    );
   }
 }
