@@ -36,7 +36,8 @@ dependencies:
   persistent_bottom_nav_bar: ^4.0.2
   api_cache_manager: ^1.0.2
   dio: ^4.0.4
-
+  image_picker: ^0.8.4+4
+  fluttertoast: ^8.0.8
 
 dev_dependencies:
   flutter_test:
@@ -56,3 +57,9 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - asset/images/
+    - asset/img/
+    - asset/img/avatar/
+    - asset/img/club/
+    - asset/img/events/
+    - asset/img/posts/
+    - asset/img/team/

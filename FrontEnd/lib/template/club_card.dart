@@ -40,22 +40,6 @@ class ClubCard extends StatelessWidget {
       ),
       child: Stack(
         children: [
-          // Align(
-          //   child: Padding(
-          //     padding: EdgeInsets.symmetric(horizontal: 5.0),
-          //     child: Text(
-          //       name,
-          //       style: TextStyle(
-          //         fontSize: 0,
-          //         color: Colors.white,
-          //       ),
-          //       overflow: TextOverflow.ellipsis,
-          //       maxLines: 2,
-          //       textAlign: TextAlign.center,
-          //     ),
-          //   ),
-          //   alignment: Alignment.center,
-          // ),
           Align(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -1,9 +1,13 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 // import 'package:home_rental/home.dart';
 import 'package:home_rental/Screens/HomePage.dart';
 import 'package:flutter/material.dart';
 import 'package:home_rental/Screens/Templates/navigationBar.dart';
 import 'package:home_rental/main.dart';
+import 'package:http/http.dart' as http;
+import 'package:fluttertoast/fluttertoast.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -11,6 +15,31 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  //input controllers
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+
+  Future<void> _login() async {
+    var uri = Uri.parse("http://192.168.194.123:3000/api/auth/login");
+    var data = {
+      "email": _emailController.text,
+      "password": _passwordController.text,
+    };
+    var request = http.post(uri,
+        body: json.encode(data), headers: {"Content-Type": "application/json"});
+    var response = await request.timeout(Duration(seconds: 10));
+    if (response.statusCode == 200) {
+      Navigator.push(context, MaterialPageRoute(builder: (context) => Bar()));
+      Fluttertoast.showToast(
+          msg: "You Are Logged In",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.green,
+          textColor: Colors.black,
+          fontSize: 16.0);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -83,8 +112,38 @@ class _LoginState extends State<Login> {
                               ]),
                           child: Column(
                             children: <Widget>[
-                              input("Email"),
-                              input("Password"),
+                              Container(
+                                padding: EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                    border: Border(
+                                        bottom: BorderSide(
+                                            color:
+                                                CupertinoColors.activeBlue))),
+                                child: TextField(
+                                  controller: _emailController,
+                                  decoration: InputDecoration(
+                                      hintText: "Email",
+                                      hintStyle: TextStyle(
+                                          color: CupertinoColors.activeBlue),
+                                      border: InputBorder.none),
+                                ),
+                              ),
+                              Container(
+                                padding: EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                    border: Border(
+                                        bottom: BorderSide(
+                                            color:
+                                                CupertinoColors.activeBlue))),
+                                child: TextField(
+                                  controller: _passwordController,
+                                  decoration: InputDecoration(
+                                      hintText: "Password",
+                                      hintStyle: TextStyle(
+                                          color: CupertinoColors.activeBlue),
+                                      border: InputBorder.none),
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -103,10 +162,9 @@ class _LoginState extends State<Login> {
                               child: RaisedButton(
                                 onPressed: () {
                                   // Navigator.pushReplacementNamed(context, '/home');
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => Bar()));
+                                  // _login();
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => Bar()));
+
                                 },
                                 color: CupertinoColors.activeBlue,
                                 child: Text(
