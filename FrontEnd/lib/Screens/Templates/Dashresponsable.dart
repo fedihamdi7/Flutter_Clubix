@@ -4,12 +4,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:home_rental/component/header.dart';
 
 import 'package:home_rental/component/infoCard.dart';
-import 'package:home_rental/component/paymentDetailList.dart';
 import 'package:home_rental/component/siderespMenu.dart';
 import 'package:home_rental/config/responsive.dart';
 import 'package:home_rental/config/size_config.dart';
 import 'package:home_rental/style/colors.dart';
-import 'package:home_rental/style/style.dart';
 
 class Dashresponsable extends StatefulWidget {
   @override
@@ -70,17 +68,15 @@ class _AccountpageState extends State<Dashresponsable> {
                             runSpacing: 20,
                             alignment: WrapAlignment.spaceBetween,
                             children: [
-                            InfoCard(
+                              InfoCard(
                                   icon: 'asset/images/calendar.svg',
                                   label: 'Event',
-                                    amount: '15'
-                                 ),
+                                  amount: '15'),
                               InfoCard(
                                   // icon: Icon(CupertinoIcons.person_alt_circle),
                                   icon: 'asset/images/team.svg',
                                   label: 'Team members',
-                                   amount: '3'
-                                  ),
+                                  amount: '3'),
                               InfoCard(
                                   icon: 'asset/images/post.svg',
                                   label: 'Post',
@@ -95,22 +91,17 @@ class _AccountpageState extends State<Dashresponsable> {
                         SizedBox(
                           height: SizeConfig.blockSizeVertical * 4,
                         ),
-                       
                         SizedBox(
                           height: SizeConfig.blockSizeVertical * 3,
                         ),
-                     
                         SizedBox(
                           height: SizeConfig.blockSizeVertical * 5,
                         ),
-                        
-                       
-                       
                       ],
                     ),
                   ),
                 )),
-                    ],
+          ],
         ),
       ),
     );

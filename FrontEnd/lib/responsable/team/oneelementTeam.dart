@@ -1,20 +1,39 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
-import 'package:home_rental/Models/Datamodel/PlaceModel.dart';
 import 'package:flutter/cupertino.dart';
-// import 'package:home_rental/home.dart';
-import 'package:home_rental/Screens/HomePage.dart';
-import 'package:flutter/material.dart';
-import 'package:home_rental/Screens/Templates/navigationBar.dart';
 import 'package:home_rental/responsable/team/editTeam.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
 
-class oneelementTeam extends StatelessWidget {
-  final PlaceModel placeModel;
+class oneelementTeam extends StatefulWidget {
+  final dynamic placeModel;
   oneelementTeam({this.placeModel});
 
   @override
+  State<oneelementTeam> createState() => _oneelementTeamState();
+}
+
+class _oneelementTeamState extends State<oneelementTeam> {
+  deleteTeam() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    String token = prefs.getString("token");
+    String userId = prefs.getString("userId");
+    String clubId = prefs.getString("club_id");
+    var team_id = widget.placeModel['team_id'];
+    var headers = {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+      "Authorization": "Bearer " + token,
+      "userId": userId,
+    };
+    var uri = Uri.parse(
+        "http://192.168.194.123:3000/api/manager/" + team_id + "/team");
+    var request = http.delete(uri, headers: headers);
+    // Navigator.popAndPushNamed(context, '/manager/events');
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final TextTheme textTheme = Theme.of(context).textTheme;
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 16.0,
@@ -51,7 +70,8 @@ class oneelementTeam extends StatelessWidget {
                   height: 220,
                   width: 150,
                   fit: BoxFit.cover,
-                  image: AssetImage(placeModel.imagePath),
+                  image: AssetImage(
+                      "asset/img/team/" + widget.placeModel['team_img']),
                 ),
               ),
               SizedBox(
@@ -65,72 +85,59 @@ class oneelementTeam extends StatelessWidget {
                       height: 12,
                     ),
                     Text(
-                      "Team Name ✨",
+                      widget.placeModel['team_name'],
                       style: Theme.of(context).textTheme.headline5,
                     ),
                     SizedBox(
                       height: 12,
                     ),
-                    Text("Team Titre"),
+                    Text(widget.placeModel['team_titre']),
                     SizedBox(
                       height: 12,
                     ),
                     Flexible(
-                                                      // child: Row(
-                                // TextButton(
-                                //   style: TextButton.styleFrom(
-                                //     primary: Colors.blue,
-                                //   ),
-                                //   onPressed: () { },
-                                //   child: Text('TextButton'),
-                                // )
-
-                           child: ButtonTheme(
-                                height: 50,
-                                child: RaisedButton(
-                                  onPressed: () {
-                                    // Navigator.pushReplacementNamed(context, '/home');
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => editTeam()));
-                                  },
-                                  color: CupertinoColors.activeBlue,
-                                  child: Text(
-                                    "Edit",
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                ),
-                              ),
-                      
-                              //  child: ButtonTheme(
-                              //   height: 50,
-                              //   child: RaisedButton(
-                              //     onPressed: () {
-                              //       // Navigator.pushReplacementNamed(context, '/home');
-                              //       Navigator.push(
-                              //           context,
-                              //           MaterialPageRoute(
-                              //               builder: (context) => Bar()));
-                              //     },
-                              //     color: CupertinoColors.systemRed,
-                              //     child: Text(
-                              //       "Delete",
-                              //       style: TextStyle(color: Colors.white),
-                              //     ),
-                              //   ),
-                              // ),
-                          // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-
+                      child: ButtonTheme(
+                        height: 50,
+                        child: RaisedButton(
+                          onPressed: () {
+                            // Navigator.pushReplacementNamed(context, '/home');
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        editTeam(widget.placeModel)));
+                          },
+                          color: CupertinoColors.activeBlue,
+                          child: Text(
+                            "Edit",
+                            style: TextStyle(color: Colors.white),
                           ),
-                    // ),
-                    
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Flexible(
+                      child: ButtonTheme(
+                        height: 50,
+                        buttonColor: Colors.red,
+                        child: RaisedButton(
+                          onPressed: () {
+                            deleteTeam();
+                          },
+                          color: Colors.red[800],
+                          child: Text(
+                            "Delete",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      ),
+                    ),
                     SizedBox(
                       height: 20,
                     ),
-                    
                   ],
-                  
                 ),
               ),
             ],

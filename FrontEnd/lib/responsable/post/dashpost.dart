@@ -1,21 +1,55 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:home_rental/component/appBarActionItems.dart';
 
-import 'package:home_rental/component/header.dart';
+import 'package:home_rental/component/header_post.dart';
 
-import 'package:home_rental/component/infoCard.dart';
-import 'package:home_rental/component/paymentDetailList.dart';
 import 'package:home_rental/component/siderespMenu.dart';
 import 'package:home_rental/config/responsive.dart';
 import 'package:home_rental/config/size_config.dart';
 import 'package:home_rental/responsable/post/oneelementPost.dart';
 import 'package:home_rental/style/colors.dart';
-import 'package:home_rental/style/style.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:home_rental/Models/Datamodel/PlaceModel.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
 
-class Dashpost extends StatelessWidget {
+class Dashpost extends StatefulWidget {
+  @override
+  State<Dashpost> createState() => _DashpostState();
+}
+
+class _DashpostState extends State<Dashpost> {
   GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
+
+  dynamic post;
+  getPost() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String token = prefs.getString("token");
+    String userId = prefs.getString("userId");
+    String clubId = prefs.getString("club_id");
+    var headers = {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+      "Authorization": "Bearer " + token,
+      "userId": userId,
+    };
+    var url = "http://192.168.194.123:3000/api/manager/" + clubId + "/post";
+    var uri = Uri.parse(url);
+    var request = http.get(uri, headers: headers);
+    var response = await request.timeout(Duration(seconds: 10));
+    var pp = jsonDecode(response.body);
+    setState(() {
+      post = pp["post"][0];
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getPost();
+  }
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -56,7 +90,7 @@ class Dashpost extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Header(),
+                        HeaderPost(),
                         SizedBox(
                           height: SizeConfig.blockSizeVertical * 4,
                         ),
@@ -67,34 +101,27 @@ class Dashpost extends StatelessWidget {
                             runSpacing: 20,
                             alignment: WrapAlignment.spaceBetween,
                             children: [
-                        
-              
-             
-              oneelementPost(
-                placeModel: placeCollection[2],
-              ),
-              SizedBox(height: 60),
+                              oneelementPost(
+                                placeModel: post,
+                              ),
+                              SizedBox(height: 60),
                             ],
                           ),
                         ),
                         SizedBox(
                           height: SizeConfig.blockSizeVertical * 4,
                         ),
-                       
                         SizedBox(
                           height: SizeConfig.blockSizeVertical * 3,
                         ),
-                     
                         SizedBox(
                           height: SizeConfig.blockSizeVertical * 5,
                         ),
-                        
-             
                       ],
                     ),
                   ),
                 )),
-                    ],
+          ],
         ),
       ),
     );

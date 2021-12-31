@@ -1,28 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
-import 'package:home_rental/Models/Datamodel/PlaceModel.dart';
 import 'package:flutter/cupertino.dart';
-// import 'package:home_rental/home.dart';
-import 'package:home_rental/Screens/HomePage.dart';
-import 'package:flutter/material.dart';
-import 'package:home_rental/Screens/Templates/navigationBar.dart';
 import 'package:home_rental/responsable/post/EditPost.dart';
-import 'package:home_rental/responsable/team/editTeam.dart';
 
-class oneelementPost extends StatelessWidget {
-  final PlaceModel placeModel;
+class oneelementPost extends StatefulWidget {
+  final dynamic placeModel;
   oneelementPost({this.placeModel});
 
   @override
+  State<oneelementPost> createState() => _oneelementPostState();
+}
+
+class _oneelementPostState extends State<oneelementPost> {
+  @override
   Widget build(BuildContext context) {
-    final TextTheme textTheme = Theme.of(context).textTheme;
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 16.0,
         vertical: 12,
       ),
       child: Container(
-        height: 220,
+        height: 500,
         width: 500,
         decoration: BoxDecoration(
           // color: Colors.blue,
@@ -43,16 +40,17 @@ class oneelementPost extends StatelessWidget {
         ),
         child: Padding(
           padding: const EdgeInsets.all(12.0),
-          child: Row(
+          child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(24),
                 child: Image(
                   height: 220,
-                  width: 150,
+                  width: 300,
                   fit: BoxFit.cover,
-                  image: AssetImage(placeModel.imagePath),
+                  image: AssetImage(
+                      "asset/img/posts/" + widget.placeModel["post_img"]),
                 ),
               ),
               SizedBox(
@@ -66,72 +64,42 @@ class oneelementPost extends StatelessWidget {
                       height: 12,
                     ),
                     Text(
-                      "Post Title ✨",
-                      style: Theme.of(context).textTheme.headline5,
+                      widget.placeModel["post_title"],
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold),
                     ),
                     SizedBox(
                       height: 12,
                     ),
-                    Text("Post Description"),
+                    Text(widget.placeModel["post_description"]),
                     SizedBox(
                       height: 12,
                     ),
                     Flexible(
-                                                      // child: Row(
-                                // TextButton(
-                                //   style: TextButton.styleFrom(
-                                //     primary: Colors.blue,
-                                //   ),
-                                //   onPressed: () { },
-                                //   child: Text('TextButton'),
-                                // )
-
-                           child: ButtonTheme(
-                                height: 50,
-                                child: RaisedButton(
-                                  onPressed: () {
-                                    // Navigator.pushReplacementNamed(context, '/home');
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => editPost()));
-                                  },
-                                  color: CupertinoColors.activeBlue,
-                                  child: Text(
-                                    "Edit",
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                ),
-                              ),
-                      
-                              //  child: ButtonTheme(
-                              //   height: 50,
-                              //   child: RaisedButton(
-                              //     onPressed: () {
-                              //       // Navigator.pushReplacementNamed(context, '/home');
-                              //       Navigator.push(
-                              //           context,
-                              //           MaterialPageRoute(
-                              //               builder: (context) => Bar()));
-                              //     },
-                              //     color: CupertinoColors.systemRed,
-                              //     child: Text(
-                              //       "Delete",
-                              //       style: TextStyle(color: Colors.white),
-                              //     ),
-                              //   ),
-                              // ),
-                          // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-
+                      child: ButtonTheme(
+                        height: 40,
+                        child: RaisedButton(
+                          onPressed: () {
+                            // Navigator.pushReplacementNamed(context, '/home');
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => editPost(widget.placeModel)));
+                          },
+                          color: CupertinoColors.activeBlue,
+                          child: Text(
+                            "Edit",
+                            style: TextStyle(color: Colors.white),
                           ),
-                    // ),
-                    
+                        ),
+                      ),
+                    ),
                     SizedBox(
                       height: 20,
                     ),
-                    
                   ],
-                  
                 ),
               ),
             ],

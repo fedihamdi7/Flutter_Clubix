@@ -1,20 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:home_rental/component/appBarActionItems.dart';
 
-import 'package:home_rental/component/header.dart';
-
-import 'package:home_rental/component/infoCard.dart';
-import 'package:home_rental/component/paymentDetailList.dart';
+import 'package:home_rental/component/header_about.dart';
 import 'package:home_rental/component/siderespMenu.dart';
 import 'package:home_rental/config/responsive.dart';
 import 'package:home_rental/config/size_config.dart';
 import 'package:home_rental/responsable/about/oneelementAbout.dart';
-import 'package:home_rental/responsable/event/addEvent.dart';
-import 'package:home_rental/responsable/oneelement.dart';
 import 'package:home_rental/style/colors.dart';
-import 'package:home_rental/style/style.dart';
-import 'package:flutter_icons/flutter_icons.dart';
-import 'package:home_rental/Models/Datamodel/PlaceModel.dart';
 
 class Dashaboutus extends StatelessWidget {
   GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
@@ -58,7 +50,7 @@ class Dashaboutus extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Header(),
+                        HeaderAbout(),
                         SizedBox(
                           height: SizeConfig.blockSizeVertical * 4,
                         ),
@@ -69,34 +61,25 @@ class Dashaboutus extends StatelessWidget {
                             runSpacing: 20,
                             alignment: WrapAlignment.spaceBetween,
                             children: [
-                        
-              
-             
-              oneelementAbout(
-                placeModel: placeCollection[2],
-              ),
-              SizedBox(height: 60),
+                              oneelementAbout(),
+                              SizedBox(height: 60),
                             ],
                           ),
                         ),
                         SizedBox(
                           height: SizeConfig.blockSizeVertical * 4,
                         ),
-                       
                         SizedBox(
                           height: SizeConfig.blockSizeVertical * 3,
                         ),
-                     
                         SizedBox(
                           height: SizeConfig.blockSizeVertical * 5,
                         ),
-                        
-             
                       ],
                     ),
                   ),
                 )),
-                    ],
+          ],
         ),
       ),
     );

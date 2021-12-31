@@ -5,15 +5,12 @@ import 'package:home_rental/Screens/Templates/ClubsList.dart';
 import 'package:home_rental/Screens/HomePage.dart';
 import 'package:home_rental/Screens/Templates/NotificationsPage.dart';
 import 'package:home_rental/Screens/Templates/dashboard.dart';
+import 'package:home_rental/responsable/event/dashevent.dart';
 import 'package:home_rental/responsable/team/addTeam.dart';
+import 'package:home_rental/responsable/team/dashteam.dart';
 import 'package:home_rental/signup.dart';
 import 'package:home_rental/clubForm.dart';
 import 'package:home_rental/login.dart';
-// import 'package:home_rental/signup.dart;
-// import 'package:home_rental/login.dart';
-
-import 'package:flutter/material.dart';
-import 'package:home_rental/Screens/HomePage.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 
@@ -37,6 +34,8 @@ class MyApp extends StatelessWidget {
         '/dash_admin': (context) => Dashboard(),
         '/dash_respo': (context) => Dashresponsable(),
         '/addTeam': (context) => addTeam(),
+        '/manager/events': (context) => Dashevent(),
+        '/manager/team': (context) => Dashteam(),
       },
       /*theme: ThemeData(
         primarySwatch: Colors.blue,

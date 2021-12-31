@@ -27,21 +27,20 @@ class SiderespMenu extends StatelessWidget {
         height: SizeConfig.screenHeight,
         decoration: BoxDecoration(color: AppColors.secondaryBg),
         child: SingleChildScrollView(
-                  child: Column(
+          child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-             Container(
-               height: 100,
-               alignment: Alignment.topCenter,
-               width: double.infinity,
-               padding: EdgeInsets.only(top: 20),
-               child: SizedBox(
-                    width: 35,
-                    height: 20,
-                    child: SvgPicture.asset('asset/images/mac-action.svg'),
-                  ),
-             ),
-            
+              Container(
+                height: 100,
+                alignment: Alignment.topCenter,
+                width: double.infinity,
+                padding: EdgeInsets.only(top: 20),
+                child: SizedBox(
+                  width: 35,
+                  height: 20,
+                  child: SvgPicture.asset('asset/images/mac-action.svg'),
+                ),
+              ),
               IconButton(
                   iconSize: 20,
                   padding: EdgeInsets.symmetric(vertical: 20.0),
@@ -49,10 +48,13 @@ class SiderespMenu extends StatelessWidget {
                     'asset/images/home.svg',
                     color: AppColors.iconGray,
                   ),
-                 onPressed: () { Navigator.push(
-                 context,
-                MaterialPageRoute(builder: (context) =>Dashresponsable() ),
-                  );}),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => Dashresponsable()),
+                    );
+                  }),
               IconButton(
                   iconSize: 20,
                   padding: EdgeInsets.symmetric(vertical: 20.0),
@@ -60,10 +62,12 @@ class SiderespMenu extends StatelessWidget {
                     'asset/images/about.svg',
                     color: AppColors.iconGray,
                   ),
-                 onPressed: () { Navigator.push(
-                 context,
-                MaterialPageRoute(builder: (context) => Dashaboutus()),
-                  );}),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Dashaboutus()),
+                    );
+                  }),
               IconButton(
                   iconSize: 20,
                   padding: EdgeInsets.symmetric(vertical: 20.0),
@@ -71,33 +75,38 @@ class SiderespMenu extends StatelessWidget {
                     'asset/images/event.svg',
                     color: AppColors.iconGray,
                   ),
-                  onPressed: () { Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => Dashevent()),
-  );}),
-         IconButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Dashevent()),
+                    );
+                  }),
+              IconButton(
                   iconSize: 20,
                   padding: EdgeInsets.symmetric(vertical: 20.0),
                   icon: SvgPicture.asset(
                     'asset/images/post.svg',
                     color: AppColors.iconGray,
                   ),
-                  onPressed: () { Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => Dashpost()),
-  );}),
-    IconButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Dashpost()),
+                    );
+                  }),
+              IconButton(
                   iconSize: 20,
                   padding: EdgeInsets.symmetric(vertical: 20.0),
                   icon: SvgPicture.asset(
                     'asset/images/team.svg',
                     color: AppColors.iconGray,
                   ),
-                  onPressed: () { Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => Dashteam()),
-  );}),
-             
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Dashteam()),
+                    );
+                  }),
             ],
           ),
         ),

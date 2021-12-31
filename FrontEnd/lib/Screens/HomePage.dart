@@ -2,18 +2,19 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+// import 'package:flutter_icons/flutter_icons.dart';
 import 'package:home_rental/Models/Datamodel/PlaceModel.dart';
 import 'package:home_rental/Models/ViewModel/AboutUspageHome.dart';
-import 'package:home_rental/Models/ViewModel/RecentAddedHome.dart';
-import 'package:home_rental/Models/ViewModel/RecentEvent.dart';
-import 'package:home_rental/Models/constants.dart';
+// import 'package:home_rental/Models/ViewModel/RecentAddedHome.dart';
+// import 'package:home_rental/Models/ViewModel/RecentEvent.dart';
+// import 'package:home_rental/Models/constants.dart';
+import 'package:home_rental/Screens/PlaceDetails.dart';
 import 'package:http/http.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
-import 'package:home_rental/Screens/Templates/Dashresponsable.dart';
-import 'package:home_rental/Screens/Templates/ClubsList.dart';
-import 'package:home_rental/Screens/HomePage.dart';
-import 'package:home_rental/Screens/Templates/NotificationsPage.dart';
+// import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+// import 'package:home_rental/Screens/Templates/Dashresponsable.dart';
+// import 'package:home_rental/Screens/Templates/ClubsList.dart';
+// import 'package:home_rental/Screens/HomePage.dart';
+// import 'package:home_rental/Screens/Templates/NotificationsPage.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -196,13 +197,13 @@ class _HomePageState extends State<HomePage> {
                   itemBuilder: (context, index) {
                     return InkWell(
                       onTap: () {
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //     builder: (context) =>
-                        //         PlaceDetails(placeModel: placeModel),
-                        //   ),
-                        // );
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                PlaceDetails(placeModel: clubs[index]),
+                          ),
+                        );
                       },
                       child: Padding(
                         padding: const EdgeInsets.symmetric(

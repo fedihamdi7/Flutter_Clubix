@@ -2,12 +2,11 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 // import 'package:home_rental/home.dart';
-import 'package:home_rental/Screens/HomePage.dart';
 import 'package:flutter/material.dart';
 import 'package:home_rental/Screens/Templates/navigationBar.dart';
-import 'package:home_rental/main.dart';
 import 'package:http/http.dart' as http;
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -29,6 +28,18 @@ class _LoginState extends State<Login> {
         body: json.encode(data), headers: {"Content-Type": "application/json"});
     var response = await request.timeout(Duration(seconds: 10));
     if (response.statusCode == 200) {
+      //save response in shared preferences
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString(
+          "token", (json.decode(response.body)["token"]).toString());
+      prefs.setString(
+          "userId", (json.decode(response.body)["user"]["userId"]).toString());
+      prefs.setString("club_id",
+          (json.decode(response.body)["user"]["club_id"]).toString());
+      prefs.setString(
+          "type", (json.decode(response.body)["user"]["type"]).toString());
+
+      // prefs.setString("user", (json.decode(response.body)["user"]).toString());
       Navigator.push(context, MaterialPageRoute(builder: (context) => Bar()));
       Fluttertoast.showToast(
           msg: "You Are Logged In",
@@ -38,6 +49,7 @@ class _LoginState extends State<Login> {
           textColor: Colors.black,
           fontSize: 16.0);
     }
+    //get data from shared preferences
   }
 
   @override
@@ -163,8 +175,10 @@ class _LoginState extends State<Login> {
                                 onPressed: () {
                                   // Navigator.pushReplacementNamed(context, '/home');
                                   // _login();
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => Bar()));
-
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => Bar()));
                                 },
                                 color: CupertinoColors.activeBlue,
                                 child: Text(

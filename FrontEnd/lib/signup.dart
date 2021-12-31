@@ -40,7 +40,6 @@ class _SignupState extends State<Signup> {
     request.fields['password'] = password;
     request.fields['type'] = type;
     var response = await request.send();
-    print(response.statusCode);
     if (response.statusCode == 201) {
       Fluttertoast.showToast(
           msg: "Signup Successful",

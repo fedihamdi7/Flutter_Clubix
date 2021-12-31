@@ -63,8 +63,8 @@ class _WrapperState extends State<Bar> {
       HomePage(),
       ClubsList(),
       Dashresponsable(),
-      Login(),
-     
+      Dashboard(),
+      // Login(),
     ];
   }
 
@@ -88,7 +88,7 @@ class _WrapperState extends State<Bar> {
         activeColorPrimary: CupertinoColors.activeBlue,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
-       PersistentBottomNavBarItem(
+      PersistentBottomNavBarItem(
         icon: Icon(CupertinoIcons.logout),
         title: ("Notifications"),
         activeColorPrimary: CupertinoColors.activeBlue,

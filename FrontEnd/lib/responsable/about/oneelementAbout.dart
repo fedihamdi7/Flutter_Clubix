@@ -1,17 +1,48 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:home_rental/Models/Datamodel/PlaceModel.dart';
 import 'package:flutter/cupertino.dart';
-// import 'package:home_rental/home.dart';
-import 'package:home_rental/Screens/HomePage.dart';
-import 'package:flutter/material.dart';
-import 'package:home_rental/Screens/Templates/navigationBar.dart';
 import 'package:home_rental/responsable/about/EditAbout.dart';
-import 'package:home_rental/responsable/team/editTeam.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
 
-class oneelementAbout extends StatelessWidget {
+class oneelementAbout extends StatefulWidget {
   final PlaceModel placeModel;
   oneelementAbout({this.placeModel});
+
+  @override
+  State<oneelementAbout> createState() => _oneelementAboutState();
+}
+
+class _oneelementAboutState extends State<oneelementAbout> {
+  var about = [];
+  getAbout() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String token = prefs.getString("token");
+    String userId = prefs.getString("userId");
+    String clubId = prefs.getString("club_id");
+    var headers = {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+      "Authorization": "Bearer " + token,
+      "userId": userId,
+    };
+    var url = "http://192.168.194.123:3000/api/manager/" + clubId + "/about";
+    var uri = Uri.parse(url);
+    var request = http.get(uri, headers: headers);
+    var response = await request.timeout(Duration(seconds: 10));
+    setState(() {
+      about = jsonDecode(response.body);
+    });
+    // print(about[0]["description"]);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getAbout();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +53,7 @@ class oneelementAbout extends StatelessWidget {
         vertical: 12,
       ),
       child: Container(
-        height: 220,
+        height: 340,
         width: 500,
         decoration: BoxDecoration(
           // color: Colors.blue,
@@ -66,72 +97,74 @@ class oneelementAbout extends StatelessWidget {
                       height: 12,
                     ),
                     Text(
-                      "About description ✨",
-                      style: Theme.of(context).textTheme.headline5,
+                      "Your Club Description",
+                      style: textTheme.subtitle1.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                        fontSize: 20,
+                      ),
+                      // style: Theme.of(context).textTheme.headline5,
                     ),
                     SizedBox(
                       height: 12,
                     ),
-                    Text(""),
+                    Text(about[0]["description"]),
                     SizedBox(
                       height: 12,
                     ),
                     Flexible(
-                                                      // child: Row(
-                                // TextButton(
-                                //   style: TextButton.styleFrom(
-                                //     primary: Colors.blue,
-                                //   ),
-                                //   onPressed: () { },
-                                //   child: Text('TextButton'),
-                                // )
+                      // child: Row(
+                      // TextButton(
+                      //   style: TextButton.styleFrom(
+                      //     primary: Colors.blue,
+                      //   ),
+                      //   onPressed: () { },
+                      //   child: Text('TextButton'),
+                      // )
 
-                           child: ButtonTheme(
-                                height: 50,
-                                child: RaisedButton(
-                                  onPressed: () {
-                                    // Navigator.pushReplacementNamed(context, '/home');
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => editAbout()));
-                                  },
-                                  color: CupertinoColors.activeBlue,
-                                  child: Text(
-                                    "Edit",
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                ),
-                              ),
-                      
-                              //  child: ButtonTheme(
-                              //   height: 50,
-                              //   child: RaisedButton(
-                              //     onPressed: () {
-                              //       // Navigator.pushReplacementNamed(context, '/home');
-                              //       Navigator.push(
-                              //           context,
-                              //           MaterialPageRoute(
-                              //               builder: (context) => Bar()));
-                              //     },
-                              //     color: CupertinoColors.systemRed,
-                              //     child: Text(
-                              //       "Delete",
-                              //       style: TextStyle(color: Colors.white),
-                              //     ),
-                              //   ),
-                              // ),
-                          // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-
+                      child: ButtonTheme(
+                        height: 50,
+                        child: RaisedButton(
+                          onPressed: () {
+                            // Navigator.pushReplacementNamed(context, '/home');
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => editAbout(about[0]["description"])));
+                          },
+                          color: CupertinoColors.activeBlue,
+                          child: Text(
+                            "Edit",
+                            style: TextStyle(color: Colors.white),
                           ),
+                        ),
+                      ),
+
+                      //  child: ButtonTheme(
+                      //   height: 50,
+                      //   child: RaisedButton(
+                      //     onPressed: () {
+                      //       // Navigator.pushReplacementNamed(context, '/home');
+                      //       Navigator.push(
+                      //           context,
+                      //           MaterialPageRoute(
+                      //               builder: (context) => Bar()));
+                      //     },
+                      //     color: CupertinoColors.systemRed,
+                      //     child: Text(
+                      //       "Delete",
+                      //       style: TextStyle(color: Colors.white),
+                      //     ),
+                      //   ),
+                      // ),
+                      // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    ),
                     // ),
-                    
+
                     SizedBox(
                       height: 20,
                     ),
-                    
                   ],
-                  
                 ),
               ),
             ],
