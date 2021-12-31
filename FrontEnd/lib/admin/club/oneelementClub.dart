@@ -1,19 +1,37 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
-import 'package:home_rental/Models/Datamodel/PlaceModel.dart';
 import 'package:flutter/cupertino.dart';
-// import 'package:home_rental/home.dart';
-import 'package:home_rental/Screens/HomePage.dart';
-import 'package:flutter/material.dart';
-import 'package:home_rental/Screens/Templates/navigationBar.dart';
+import 'package:home_rental/admin/club/dashclub.dart';
 import 'package:home_rental/admin/club/editClub.dart';
-import 'package:home_rental/admin/user/editUser.dart';
-import 'package:home_rental/responsable/event/EditEvent.dart';
-import 'package:home_rental/responsable/team/editTeam.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
 
-class oneelementclub extends StatelessWidget {
-  final PlaceModel placeModel;
-  oneelementclub({this.placeModel});
+class oneelementclub extends StatefulWidget {
+  final dynamic club;
+  oneelementclub({this.club});
+
+  @override
+  State<oneelementclub> createState() => _oneelementclubState();
+}
+
+class _oneelementclubState extends State<oneelementclub> {
+  deleteClub() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    String token = prefs.getString("token");
+    String userId = prefs.getString("userId");
+    var headers = {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+      "Authorization": "Bearer " + token,
+      "userId": userId,
+    };
+    var uri = Uri.parse("http://192.168.194.123:3000/api/admin/" +
+        widget.club["_id"] +
+        "/clubs");
+    var request = http.delete(uri, headers: headers);
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => Dashclub()));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +72,7 @@ class oneelementclub extends StatelessWidget {
                   height: 220,
                   width: 150,
                   fit: BoxFit.cover,
-                  image: AssetImage(placeModel.imagePath),
+                  image: AssetImage("asset/img/club/" + widget.club['image']),
                 ),
               ),
               SizedBox(
@@ -68,72 +86,70 @@ class oneelementclub extends StatelessWidget {
                       height: 12,
                     ),
                     Text(
-                      "Club Name ✨",
+                      widget.club['title'],
                       style: Theme.of(context).textTheme.headline5,
                     ),
                     SizedBox(
                       height: 12,
                     ),
-                    Text("club description"),
+                    Text(
+                      widget.club['description'],
+                      maxLines: 4,
+                      overflow: TextOverflow.ellipsis,
+                      softWrap: false,
+                    ),
                     SizedBox(
                       height: 12,
                     ),
                     Flexible(
-                                                      // child: Row(
-                                // TextButton(
-                                //   style: TextButton.styleFrom(
-                                //     primary: Colors.blue,
-                                //   ),
-                                //   onPressed: () { },
-                                //   child: Text('TextButton'),
-                                // )
+                      // child: Row(
+                      // TextButton(
+                      //   style: TextButton.styleFrom(
+                      //     primary: Colors.blue,
+                      //   ),
+                      //   onPressed: () { },
+                      //   child: Text('TextButton'),
+                      // )
 
-                           child: ButtonTheme(
-                                height: 50,
-                                child: RaisedButton(
-                                  onPressed: () {
-                                    // Navigator.pushReplacementNamed(context, '/home');
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => editClub()));
-                                  },
-                                  color: CupertinoColors.activeBlue,
-                                  child: Text(
-                                    "Edit",
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                ),
-                              ),
-                      
-                              //  child: ButtonTheme(
-                              //   height: 50,
-                              //   child: RaisedButton(
-                              //     onPressed: () {
-                              //       // Navigator.pushReplacementNamed(context, '/home');
-                              //       Navigator.push(
-                              //           context,
-                              //           MaterialPageRoute(
-                              //               builder: (context) => Bar()));
-                              //     },
-                              //     color: CupertinoColors.systemRed,
-                              //     child: Text(
-                              //       "Delete",
-                              //       style: TextStyle(color: Colors.white),
-                              //     ),
-                              //   ),
-                              // ),
-                          // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-
+                      child: ButtonTheme(
+                        height: 50,
+                        child: RaisedButton(
+                          onPressed: () {
+                            // Navigator.pushReplacementNamed(context, '/home');
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        editClub(widget.club)));
+                          },
+                          color: CupertinoColors.activeBlue,
+                          child: Text(
+                            "Edit",
+                            style: TextStyle(color: Colors.white),
                           ),
-                    // ),
-                    
-                    SizedBox(
-                      height: 20,
+                        ),
+                      ),
                     ),
-                    
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Flexible(
+                      child: ButtonTheme(
+                        height: 40,
+                        buttonColor: Colors.red,
+                        child: RaisedButton(
+                          onPressed: () {
+                            deleteClub();
+                          },
+                          color: Colors.red[800],
+                          child: Text(
+                            "Delete",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
-                  
                 ),
               ),
             ],

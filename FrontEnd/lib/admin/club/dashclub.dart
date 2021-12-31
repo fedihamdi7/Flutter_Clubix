@@ -1,25 +1,52 @@
-
 import 'package:flutter/material.dart';
 import 'package:home_rental/admin/club/addCub.dart';
 import 'package:home_rental/admin/club/oneelementClub.dart';
 import 'package:home_rental/component/appBarActionItems.dart';
-
-import 'package:home_rental/component/header.dart';
-
-import 'package:home_rental/component/infoCard.dart';
-import 'package:home_rental/component/paymentDetailList.dart';
+import 'package:home_rental/component/header_club.dart';
 import 'package:home_rental/component/sideMenu.dart';
-import 'package:home_rental/component/siderespMenu.dart';
 import 'package:home_rental/config/responsive.dart';
 import 'package:home_rental/config/size_config.dart';
-import 'package:home_rental/responsable/oneelement.dart';
 import 'package:home_rental/style/colors.dart';
-import 'package:home_rental/style/style.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:home_rental/Models/Datamodel/PlaceModel.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:convert';
 
-class Dashclub extends StatelessWidget {
+class Dashclub extends StatefulWidget {
+  @override
+  State<Dashclub> createState() => _DashclubState();
+}
+
+class _DashclubState extends State<Dashclub> {
   GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
+
+  var clubs;
+  getClubs() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String token = prefs.getString("token");
+    String userId = prefs.getString("userId");
+    var headers = {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+      "Authorization": "Bearer " + token,
+      "userId": userId,
+    };
+    var url = "http://192.168.194.123:3000/api/allclub/getAllClub";
+    var uri = Uri.parse(url);
+    var request = http.get(uri, headers: headers);
+    var response = await request.timeout(Duration(seconds: 10));
+    setState(() {
+      clubs = jsonDecode(response.body);
+    });
+    print(clubs);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getClubs();
+  }
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -60,7 +87,7 @@ class Dashclub extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Header(),
+                        HeadClub(),
                         SizedBox(
                           height: SizeConfig.blockSizeVertical * 4,
                         ),
@@ -71,46 +98,24 @@ class Dashclub extends StatelessWidget {
                             runSpacing: 20,
                             alignment: WrapAlignment.spaceBetween,
                             children: [
-                        
-              
-             
-              oneelementclub(
-                placeModel: placeCollection[2],
-              ),
-              SizedBox(height: 60),
+                              Container(
+                                height: 450,
+                                child: ListView.builder(
+                                    itemCount: clubs.length,
+                                    itemBuilder: (context, index) {
+                                      return oneelementclub(
+                                        club: clubs[index],
+                                      );
+                                    }),
+                              ),
                             ],
                           ),
                         ),
-                        SizedBox(
-                          height: SizeConfig.blockSizeVertical * 4,
-                        ),
-                       
-                        SizedBox(
-                          height: SizeConfig.blockSizeVertical * 3,
-                        ),
-                     
-                        SizedBox(
-                          height: SizeConfig.blockSizeVertical * 5,
-                        ),
-                        
-             FloatingActionButton(
-            backgroundColor: Colors.blue,
-            foregroundColor: Colors.black,
-            
-            onPressed: () {
-           // Respond to button press
-           Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => addClub()),
-  );
-                },
-          child: Icon(Icons.add),
-)  
                       ],
                     ),
                   ),
                 )),
-                    ],
+          ],
         ),
       ),
     );
