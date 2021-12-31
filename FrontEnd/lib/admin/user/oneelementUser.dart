@@ -1,22 +1,41 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
-import 'package:home_rental/Models/Datamodel/PlaceModel.dart';
 import 'package:flutter/cupertino.dart';
-// import 'package:home_rental/home.dart';
-import 'package:home_rental/Screens/HomePage.dart';
-import 'package:flutter/material.dart';
-import 'package:home_rental/Screens/Templates/navigationBar.dart';
 import 'package:home_rental/admin/user/editUser.dart';
-import 'package:home_rental/responsable/event/EditEvent.dart';
-import 'package:home_rental/responsable/team/editTeam.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
 
-class oneelementuser extends StatelessWidget {
-  final PlaceModel placeModel;
-  oneelementuser({this.placeModel});
+import 'dashuser.dart';
+
+class oneelementuser extends StatefulWidget {
+  final dynamic user;
+  oneelementuser({this.user});
+
+  @override
+  State<oneelementuser> createState() => _oneelementuserState();
+}
+
+class _oneelementuserState extends State<oneelementuser> {
+  deleteUser() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    String token = prefs.getString("token");
+    String userId = prefs.getString("userId");
+    var headers = {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+      "Authorization": "Bearer " + token,
+      "userId": userId,
+    };
+    var uri = Uri.parse("http://192.168.194.123:3000/api/admin_user/" +
+        widget.user["_id"] +
+        "/deleteuser");
+    var request = http.delete(uri, headers: headers);
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => Dashuser()));
+  }
 
   @override
   Widget build(BuildContext context) {
-    final TextTheme textTheme = Theme.of(context).textTheme;
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 16.0,
@@ -53,7 +72,8 @@ class oneelementuser extends StatelessWidget {
                   height: 220,
                   width: 150,
                   fit: BoxFit.cover,
-                  image: AssetImage(placeModel.imagePath),
+                  image:
+                      AssetImage("asset/img/avatar/" + widget.user['user_img']),
                 ),
               ),
               SizedBox(
@@ -67,74 +87,57 @@ class oneelementuser extends StatelessWidget {
                       height: 12,
                     ),
                     Text(
-                      "Username ✨",
+                      widget.user['name'],
                       style: Theme.of(context).textTheme.headline5,
                     ),
                     SizedBox(
                       height: 12,
                     ),
-                    Text("User email"),
-                    Text("User password"),
-                    Text("User type"),
+                    Text(widget.user['email']),
+                    // Text("User password"),
+                    Text(widget.user['type']),
                     SizedBox(
                       height: 12,
                     ),
                     Flexible(
-                                                      // child: Row(
-                                // TextButton(
-                                //   style: TextButton.styleFrom(
-                                //     primary: Colors.blue,
-                                //   ),
-                                //   onPressed: () { },
-                                //   child: Text('TextButton'),
-                                // )
-
-                           child: ButtonTheme(
-                                height: 50,
-                                child: RaisedButton(
-                                  onPressed: () {
-                                    // Navigator.pushReplacementNamed(context, '/home');
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => editUser()));
-                                  },
-                                  color: CupertinoColors.activeBlue,
-                                  child: Text(
-                                    "Edit",
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                ),
-                              ),
-                      
-                              //  child: ButtonTheme(
-                              //   height: 50,
-                              //   child: RaisedButton(
-                              //     onPressed: () {
-                              //       // Navigator.pushReplacementNamed(context, '/home');
-                              //       Navigator.push(
-                              //           context,
-                              //           MaterialPageRoute(
-                              //               builder: (context) => Bar()));
-                              //     },
-                              //     color: CupertinoColors.systemRed,
-                              //     child: Text(
-                              //       "Delete",
-                              //       style: TextStyle(color: Colors.white),
-                              //     ),
-                              //   ),
-                              // ),
-                          // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-
+                      child: ButtonTheme(
+                        height: 40,
+                        child: RaisedButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        editUser(widget.user)));
+                          },
+                          color: CupertinoColors.activeBlue,
+                          child: Text(
+                            "Edit",
+                            style: TextStyle(color: Colors.white),
                           ),
-                    // ),
-                    
-                    SizedBox(
-                      height: 20,
+                        ),
+                      ),
                     ),
-                    
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Flexible(
+                      child: ButtonTheme(
+                        height: 40,
+                        buttonColor: Colors.red,
+                        child: RaisedButton(
+                          onPressed: () {
+                            deleteUser();
+                          },
+                          color: Colors.red[800],
+                          child: Text(
+                            "Delete",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
-                  
                 ),
               ),
             ],

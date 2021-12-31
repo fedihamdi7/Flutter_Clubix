@@ -1,25 +1,50 @@
-
 import 'package:flutter/material.dart';
-import 'package:home_rental/admin/user/addUser.dart';
 import 'package:home_rental/admin/user/oneelementUser.dart';
 import 'package:home_rental/component/appBarActionItems.dart';
-
-import 'package:home_rental/component/header.dart';
-
-import 'package:home_rental/component/infoCard.dart';
-import 'package:home_rental/component/paymentDetailList.dart';
+import 'package:home_rental/component/header_user.dart';
 import 'package:home_rental/component/sideMenu.dart';
-import 'package:home_rental/component/siderespMenu.dart';
 import 'package:home_rental/config/responsive.dart';
 import 'package:home_rental/config/size_config.dart';
-import 'package:home_rental/responsable/oneelement.dart';
 import 'package:home_rental/style/colors.dart';
-import 'package:home_rental/style/style.dart';
-import 'package:flutter_icons/flutter_icons.dart';
-import 'package:home_rental/Models/Datamodel/PlaceModel.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:convert';
 
-class Dashuser extends StatelessWidget {
+class Dashuser extends StatefulWidget {
+  @override
+  State<Dashuser> createState() => _DashuserState();
+}
+
+class _DashuserState extends State<Dashuser> {
   GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
+
+  var users;
+  getUsers() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String token = prefs.getString("token");
+    String userId = prefs.getString("userId");
+    String clubId = prefs.getString("club_id");
+    var headers = {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+      "Authorization": "Bearer " + token,
+      "userId": userId,
+    };
+    var url = "http://192.168.194.123:3000/api/admin_user/getUsers";
+    var uri = Uri.parse(url);
+    var request = http.get(uri, headers: headers);
+    var response = await request.timeout(Duration(seconds: 10));
+    setState(() {
+      users = jsonDecode(response.body);
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getUsers();
+  }
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -60,7 +85,7 @@ class Dashuser extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Header(),
+                        HeaderUser(),
                         SizedBox(
                           height: SizeConfig.blockSizeVertical * 4,
                         ),
@@ -71,46 +96,24 @@ class Dashuser extends StatelessWidget {
                             runSpacing: 20,
                             alignment: WrapAlignment.spaceBetween,
                             children: [
-                        
-              
-             
-              oneelementuser(
-                placeModel: placeCollection[2],
-              ),
-              SizedBox(height: 60),
+                              Container(
+                                height: 450,
+                                child: ListView.builder(
+                                    itemCount: users.length,
+                                    itemBuilder: (context, index) {
+                                      return oneelementuser(
+                                        user: users[index],
+                                      );
+                                    }),
+                              ),
                             ],
                           ),
                         ),
-                        SizedBox(
-                          height: SizeConfig.blockSizeVertical * 4,
-                        ),
-                       
-                        SizedBox(
-                          height: SizeConfig.blockSizeVertical * 3,
-                        ),
-                     
-                        SizedBox(
-                          height: SizeConfig.blockSizeVertical * 5,
-                        ),
-                        
-             FloatingActionButton(
-            backgroundColor: Colors.blue,
-            foregroundColor: Colors.black,
-            
-            onPressed: () {
-           // Respond to button press
-           Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => addUser()),
-  );
-                },
-          child: Icon(Icons.add),
-)  
                       ],
                     ),
                   ),
                 )),
-                    ],
+          ],
         ),
       ),
     );
