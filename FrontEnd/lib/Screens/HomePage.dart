@@ -9,7 +9,9 @@ import 'package:home_rental/Models/ViewModel/AboutUspageHome.dart';
 // import 'package:home_rental/Models/ViewModel/RecentEvent.dart';
 // import 'package:home_rental/Models/constants.dart';
 import 'package:home_rental/Screens/PlaceDetails.dart';
+import 'package:home_rental/login.dart';
 import 'package:http/http.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 // import 'package:home_rental/Screens/Templates/Dashresponsable.dart';
 // import 'package:home_rental/Screens/Templates/ClubsList.dart';
@@ -58,6 +60,19 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text("Home Page"),
         backgroundColor: Colors.blue,
+        actions: [
+          // aad logout icon
+          IconButton(
+            icon: Icon(Icons.exit_to_app),
+            onPressed: () async {
+              SharedPreferences prefs = await SharedPreferences.getInstance();
+              prefs.clear();
+              // Navigator.pushNamed(context, '/login');
+              Navigator.of(context, rootNavigator: true).pushReplacement(
+                  MaterialPageRoute(builder: (context) => new Login()));
+            },
+          ),
+        ],
       ),
       body: SafeArea(
         child: Padding(

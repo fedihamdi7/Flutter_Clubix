@@ -27,6 +27,7 @@ class _LoginState extends State<Login> {
     var request = http.post(uri,
         body: json.encode(data), headers: {"Content-Type": "application/json"});
     var response = await request.timeout(Duration(seconds: 10));
+    // print(response.body);
     if (response.statusCode == 200) {
       //save response in shared preferences
       SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -174,11 +175,11 @@ class _LoginState extends State<Login> {
                               child: RaisedButton(
                                 onPressed: () {
                                   // Navigator.pushReplacementNamed(context, '/home');
-                                  // _login();
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => Bar()));
+                                  _login();
+                                  // Navigator.push(
+                                  //     context,
+                                  //     MaterialPageRoute(
+                                  //         builder: (context) => Bar()));
                                 },
                                 color: CupertinoColors.activeBlue,
                                 child: Text(

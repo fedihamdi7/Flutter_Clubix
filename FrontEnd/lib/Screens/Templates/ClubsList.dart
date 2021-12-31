@@ -4,8 +4,10 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:home_rental/Screens/PlaceDetails.dart';
+import 'package:home_rental/login.dart';
 import 'package:home_rental/template/club_card.dart';
 import 'package:http/http.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ClubsList extends StatefulWidget {
   @override
@@ -35,6 +37,18 @@ class _ClubsListState extends State<ClubsList> {
       appBar: AppBar(
         title: Text("All Clubs"),
         backgroundColor: Colors.blue,
+        actions: [
+          // aad logout icon
+          IconButton(
+            icon: Icon(Icons.exit_to_app),
+            onPressed: () async {
+              SharedPreferences prefs = await SharedPreferences.getInstance();
+              prefs.clear();
+              Navigator.of(context, rootNavigator: true).pushReplacement(
+                  MaterialPageRoute(builder: (context) => new Login()));
+            },
+          ),
+        ],
       ),
       body: ListView.builder(
         itemCount: data.length,

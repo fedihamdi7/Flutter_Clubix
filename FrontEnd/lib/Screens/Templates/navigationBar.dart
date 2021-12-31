@@ -11,6 +11,7 @@ import 'package:home_rental/login.dart';
 import 'package:flutter/material.dart';
 import 'package:home_rental/Screens/HomePage.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Bar extends StatefulWidget {
   @override
@@ -20,6 +21,27 @@ class Bar extends StatefulWidget {
 class _WrapperState extends State<Bar> {
   PersistentTabController _controller =
       PersistentTabController(initialIndex: 0);
+  var type;
+  getLoggedUser() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String tt = prefs.getString("type");
+    setState(() {
+      type = tt;
+    });
+    print(prefs.getString("type"));
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getLoggedUser();
+  }
+
+  Logout() async {
+    //clear shared preferences
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.clear();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,8 +84,10 @@ class _WrapperState extends State<Bar> {
     return [
       HomePage(),
       ClubsList(),
-      Dashresponsable(),
-      Dashboard(),
+      // Dashresponsable(),
+      // Dashboard(),
+      if (type == "admin") Dashboard(),
+      if (type == "manager") Dashresponsable(),
       // Login(),
     ];
   }
@@ -82,18 +106,19 @@ class _WrapperState extends State<Bar> {
         activeColorPrimary: CupertinoColors.activeBlue,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
-      PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.dashboard),
-        title: ("User"),
-        activeColorPrimary: CupertinoColors.activeBlue,
-        inactiveColorPrimary: CupertinoColors.systemGrey,
-      ),
-      PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.logout),
-        title: ("Notifications"),
-        activeColorPrimary: CupertinoColors.activeBlue,
-        inactiveColorPrimary: CupertinoColors.systemGrey,
-      ),
+      if (type == "admin" || type == "manager")
+        PersistentBottomNavBarItem(
+          icon: Icon(CupertinoIcons.dashboard),
+          title: ("Dashboard"),
+          activeColorPrimary: CupertinoColors.activeBlue,
+          inactiveColorPrimary: CupertinoColors.systemGrey,
+        ),
+      // PersistentBottomNavBarItem(
+      //   icon: Icon(CupertinoIcons.logout),
+      //   title: ("Notifications"),
+      //   activeColorPrimary: CupertinoColors.activeBlue,
+      //   inactiveColorPrimary: CupertinoColors.systemGrey,
+      // ),
     ];
   }
 }
