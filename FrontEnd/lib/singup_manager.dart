@@ -1,66 +1,47 @@
-import 'package:flutter/cupertino.dart';
-
-import 'package:flutter/material.dart';
 import 'dart:io';
-import 'package:async/async.dart';
-import 'package:path/path.dart';
+
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:async';
 import 'dart:convert';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:async/async.dart';
+import 'package:path/path.dart';
 
-class Signup extends StatefulWidget {
+class SignupManager extends StatefulWidget {
   @override
-  State<Signup> createState() => _SignupState();
+  _SignupManagerState createState() => _SignupManagerState();
 }
 
-class _SignupState extends State<Signup> {
-  //input controllers
+class _SignupManagerState extends State<SignupManager> {
+  //input fields
   TextEditingController _nameController = TextEditingController();
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
-  TextEditingController _typeController = TextEditingController();
+  TextEditingController _descriptionController = TextEditingController();
 
-  //XFile
   XFile _file;
 
-  Future<dynamic> SignUp(File imageFile, String name, String email,
-      String password, String type, context) async {
+  SignUp(File imageFile, String name, String description, context) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String userId = prefs.getString("userId");
+
     var stream =
         new http.ByteStream(DelegatingStream.typed(imageFile.openRead()));
     var length = await imageFile.length();
-    var uri = Uri.parse("http://192.168.194.123:3000/api/auth/signup");
+    var uri = Uri.parse("http://192.168.194.123:3000/api/auth/clubManager");
     var request = new http.MultipartRequest("POST", uri);
-    var multipartFile = new http.MultipartFile('user_img', stream, length,
+    var multipartFile = new http.MultipartFile('image', stream, length,
         filename: basename(imageFile.path));
     request.files.add(multipartFile);
-    request.fields['name'] = name;
-    request.fields['email'] = email;
-    request.fields['password'] = password;
-    request.fields['type'] = type;
+    request.headers['user_id'] = userId;
+    request.fields['title'] = _nameController.text;
+    request.fields['description'] = _descriptionController.text;
     var response = await request.send();
-    if (type == "manager") {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      response.stream.transform(utf8.decoder).listen((value) {
-        prefs.setString("userId", (json.decode(value)["userId"]).toString());
-
-      });
-      Navigator.pushReplacementNamed(context, '/signupManager');
-    } else {
-      if (response.statusCode == 201) {
-        Fluttertoast.showToast(
-            msg: "Signup Successful",
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.TOP,
-            backgroundColor: Colors.green,
-            textColor: Colors.white,
-            fontSize: 16.0);
-        Navigator.pushReplacementNamed(context, '/login');
-      }
-    }
-    return response;
+    response.stream.transform(utf8.decoder).listen((value) {
+      print(value);
+    });
+    Navigator.pushReplacementNamed(context, '/login');
   }
 
   @override
@@ -86,24 +67,24 @@ class _SignupState extends State<Signup> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    "Sign Up",
+                    "Create Your Club",
                     style: TextStyle(color: Colors.white, fontSize: 40),
                   ),
                   SizedBox(
                     height: 10,
                   ),
                   Text(
-                    "Join Us",
+                    "Tell Us about your Club",
                     style: TextStyle(color: Colors.white, fontSize: 18),
                   ),
-                  TextButton(
-                      onPressed: () {
-                        Navigator.pushReplacementNamed(context, '/login');
-                      },
-                      child: Text(
-                        "You have an account ? login",
-                        style: TextStyle(color: Colors.white, fontSize: 18),
-                      )),
+                  // TextButton(
+                  //     onPressed: () {
+                  //       Navigator.pushReplacementNamed(context, '/login');
+                  //     },
+                  //     child: Text(
+                  //       "You have an account ? login",
+                  //       style: TextStyle(color: Colors.white, fontSize: 18),
+                  //     )),
                 ],
               ),
             ),
@@ -145,7 +126,7 @@ class _SignupState extends State<Signup> {
                                   child: TextField(
                                     controller: _nameController,
                                     decoration: InputDecoration(
-                                        hintText: "Username",
+                                        hintText: "Club Name",
                                         hintStyle: TextStyle(
                                             color: CupertinoColors.activeBlue),
                                         border: InputBorder.none),
@@ -158,39 +139,9 @@ class _SignupState extends State<Signup> {
                                               color:
                                                   CupertinoColors.activeBlue))),
                                   child: TextField(
-                                    controller: _emailController,
+                                    controller: _descriptionController,
                                     decoration: InputDecoration(
-                                        hintText: "Email",
-                                        hintStyle: TextStyle(
-                                            color: CupertinoColors.activeBlue),
-                                        border: InputBorder.none),
-                                  )),
-                              Container(
-                                  padding: EdgeInsets.all(10),
-                                  decoration: BoxDecoration(
-                                      border: Border(
-                                          bottom: BorderSide(
-                                              color:
-                                                  CupertinoColors.activeBlue))),
-                                  child: TextField(
-                                    controller: _passwordController,
-                                    decoration: InputDecoration(
-                                        hintText: "Password",
-                                        hintStyle: TextStyle(
-                                            color: CupertinoColors.activeBlue),
-                                        border: InputBorder.none),
-                                  )),
-                              Container(
-                                  padding: EdgeInsets.all(10),
-                                  decoration: BoxDecoration(
-                                      border: Border(
-                                          bottom: BorderSide(
-                                              color:
-                                                  CupertinoColors.activeBlue))),
-                                  child: TextField(
-                                    controller: _typeController,
-                                    decoration: InputDecoration(
-                                        hintText: "Type : (user/manager)",
+                                        hintText: "Club Description",
                                         hintStyle: TextStyle(
                                             color: CupertinoColors.activeBlue),
                                         border: InputBorder.none),
@@ -223,13 +174,8 @@ class _SignupState extends State<Signup> {
                               child: RaisedButton(
                                 onPressed: () {
                                   File image = File(_file.path);
-                                  SignUp(
-                                      image,
-                                      _nameController.text,
-                                      _emailController.text,
-                                      _passwordController.text,
-                                      _typeController.text,
-                                      context);
+                                  SignUp(image, _nameController.text,
+                                      _descriptionController.text, context);
                                 },
                                 color: CupertinoColors.activeBlue,
                                 child: Text(

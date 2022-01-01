@@ -21,7 +21,7 @@ class Dashpost extends StatefulWidget {
 
 class _DashpostState extends State<Dashpost> {
   GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
-
+  dynamic noPost;
   dynamic post;
   getPost() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -39,9 +39,15 @@ class _DashpostState extends State<Dashpost> {
     var request = http.get(uri, headers: headers);
     var response = await request.timeout(Duration(seconds: 10));
     var pp = jsonDecode(response.body);
-    setState(() {
-      post = pp["post"][0];
-    });
+    if (pp ==null){
+      setState(() {
+        noPost = null;
+      });
+    }else{
+      setState(() {
+        post = pp["post"][0];
+      });
+    }
   }
 
   @override
@@ -101,9 +107,9 @@ class _DashpostState extends State<Dashpost> {
                             runSpacing: 20,
                             alignment: WrapAlignment.spaceBetween,
                             children: [
-                              oneelementPost(
-                                placeModel: post,
-                              ),
+                              post == null
+                                  ? oneelementPost(placeModel:noPost)
+                                  : oneelementPost(placeModel: post),
                               SizedBox(height: 60),
                             ],
                           ),

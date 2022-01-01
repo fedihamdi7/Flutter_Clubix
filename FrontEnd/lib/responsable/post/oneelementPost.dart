@@ -49,8 +49,10 @@ class _oneelementPostState extends State<oneelementPost> {
                   height: 220,
                   width: 300,
                   fit: BoxFit.cover,
-                  image: AssetImage(
-                      "asset/img/posts/" + widget.placeModel["post_img"]),
+                  image: widget.placeModel == null
+                      ? AssetImage("asset/img/notfound.jpg")
+                      : AssetImage(
+                          "asset/img/posts/" + widget.placeModel["post_img"]),
                 ),
               ),
               SizedBox(
@@ -64,7 +66,9 @@ class _oneelementPostState extends State<oneelementPost> {
                       height: 12,
                     ),
                     Text(
-                      widget.placeModel["post_title"],
+                      widget.placeModel == null
+                          ? "No title"
+                          : widget.placeModel["post_title"],
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 20,
@@ -73,7 +77,9 @@ class _oneelementPostState extends State<oneelementPost> {
                     SizedBox(
                       height: 12,
                     ),
-                    Text(widget.placeModel["post_description"]),
+                    Text(widget.placeModel == null
+                        ? "No description"
+                        : widget.placeModel["post_description"]),
                     SizedBox(
                       height: 12,
                     ),
@@ -86,7 +92,9 @@ class _oneelementPostState extends State<oneelementPost> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => editPost(widget.placeModel)));
+                                    builder: (context) =>    
+                                        editPost(widget.placeModel)
+                                        ));
                           },
                           color: CupertinoColors.activeBlue,
                           child: Text(

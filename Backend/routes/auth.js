@@ -26,7 +26,7 @@ const storageUser = multer.diskStorage({
 });
 const storageClub = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, './../FrontEnd/src/assets/img/club');
+        cb(null, './../FrontEnd/asset/img/club');
     },
     filename: function (req, file, cb) {
         const name = file.originalname.toLowerCase().split(' ').join('-');

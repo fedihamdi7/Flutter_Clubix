@@ -1,16 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:home_rental/Screens/Templates/Dashresponsable.dart';
-import 'package:home_rental/Screens/Templates/ClubsList.dart';
-import 'package:home_rental/Screens/HomePage.dart';
-import 'package:home_rental/Screens/Templates/NotificationsPage.dart';
-import 'package:home_rental/Screens/Templates/dashboard.dart';
-import 'package:home_rental/responsable/event/dashevent.dart';
-import 'package:home_rental/responsable/team/addTeam.dart';
-import 'package:home_rental/responsable/team/dashteam.dart';
-import 'package:home_rental/signup.dart';
-import 'package:home_rental/clubForm.dart';
-import 'package:home_rental/login.dart';
+import 'package:home_rental/singup_manager.dart';
+import './Screens/Templates/Dashresponsable.dart';
+import './Screens/Templates/ClubsList.dart';
+import './Screens/HomePage.dart';
+import './Screens/Templates/NotificationsPage.dart';
+import './Screens/Templates/dashboard.dart';
+import './responsable/event/dashevent.dart';
+import './responsable/team/addTeam.dart';
+import './responsable/team/dashteam.dart';
+import './signup.dart';
+import './clubForm.dart';
+import './login.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/login': (context) => Login(),
         '/signup': (context) => Signup(),
+        '/signupManager': (context) => SignupManager(),
         '/home': (context) => HomePage(),
         '/clubForm': (context) => clubForm(),
         '/clubs_list': (context) => ClubsList(),

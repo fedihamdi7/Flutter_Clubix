@@ -27,8 +27,13 @@ class _editPost extends State<editPost> {
   @override
   void initState() {
     super.initState();
-    _postTitleController.text = widget.post['post_title'];
-    _postDescriptionController.text = widget.post['post_description'];
+    if (widget.post != null) {
+      _postTitleController.text = widget.post['post_title'];
+      _postDescriptionController.text = widget.post['post_description'];
+    } else {
+      _postTitleController.text = '';
+      _postDescriptionController.text = '';
+    }
   }
 
   send(File file) async {
@@ -36,7 +41,6 @@ class _editPost extends State<editPost> {
     String token = prefs.getString("token");
     String userId = prefs.getString("userId");
     String clubId = prefs.getString("club_id");
- 
 
     var stream = new http.ByteStream(DelegatingStream.typed(_file.openRead()));
     var length = await _file.length();
